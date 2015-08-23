@@ -1,0 +1,238 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+    <head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/app/css/validation.css}"/>
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-datetimepicker.css}" />
+<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+<script type="text/javascript" th:src="@{/app/validation/jquery.validate.min.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap.min.js}"></script>
+<script th:inline="javascript" th:src="@{/app/js/commonPage.js}"></script>
+<script th:inline="javascript" th:src="@{/app/js/commonSort.js}"></script>
+<script type="text/javascript">
+        /*<![CDATA[*/
+            if( typeof Array.indexOf !== 'function' ) {
+                Array.prototype.indexOf = function(args){ 
+                    var index = -1; 
+                    for(var i=0; i<this.length; i++){ 
+                        if(this[i] === args){ 
+                            index = i; 
+                            break; 
+                        }    
+                    }    
+                    return index; 
+                } 
+            }
+            
+            if(typeof String.trim !== 'function' ){
+               String.prototype.trim=function() {   
+                   return this.replace(/(^\s*)|(\s*$)/g,'');   
+               }
+            };
+            
+            
+        /*]]>*/
+</script>
+              
+<script th:src="@{/app/js/vendor/bootstrap-datetimepicker.min.js}"></script>
+
+<script type="text/javascript">
+        /*<![CDATA[*/
+            $().ready(function() {
+            	jQuery.validator.methods.compareDate = function(value, element, param) {
+            		var strStarTime = $(param).val() + ":00";
+            		var strEndTime = value + ":59";
+            		
+            		var startTime = new Date(Date.parse(strStarTime.replace("-", "/")));
+            	    var endTime = new Date(Date.parse(strEndTime.replace("-", "/")));
+
+            	    return startTime < endTime;
+            	}
+
+                $("#orderByFormAlbumRevenue").validate({
+                	focusInvalid:false,
+                	rules : {
+                		"startTime":{
+                			required:true
+                		},
+                		"endTime":{
+                			required:true,
+                			compareDate: "#startTime"
+                		}
+                	},
+                    messages: {
+                        "startTime": {
+                            required: "请选择开始时间"
+                        },
+                        "endTime" : {
+                            required: "请选择结束时间",
+                            compareDate:"结束时间必须晚于开始时间"
+                        }
+                    }
+                });
+                    
+            });  
+        /*]]>*/
+</script>  
+</head>
+<body>
+    <div class="container-fluid">
+        <form id="orderByFormAlbumRevenue" th:action="@{/queryAlbumRevenue}">
+            <input type="hidden" id="orderByStr" name="orderByStr" th:value="${orderBy}"/>
+         <div class="row" id="qry" style="margin-right:15px;">
+            
+            <table cellspacing="10px" class="table table-striped" >
+	            <tr>
+	                <td>专辑名称：</td>
+	                <td><input type="text" id="albumName" name="albumName" th:value="${albumName}"></input></td>
+	                <td>歌手名称：</td>
+	                <td><input type="text" id="singerName" name="singerName" th:value="${singerName}"   ></input></td>
+	                <td>专辑类型：</td>
+	                <td><select id="albumCategory" name="albumCategory">
+	                    <option th:value="0" th:text="全部"
+	                        th:selected="${categoryId == '0'}"></option>
+	                    <option th:each="category : ${categories}"
+	                        th:value="${category.categoryId}" th:text="${category.categoryName}"
+	                        th:selected="${categoryId == category.categoryId}">
+	                    </option>
+	                </select>
+	                </td>
+	            </tr>
+                <tr>
+                    <td>开始时间：</td>
+                    <td><input id="startTime" name="startTime"  type="text" 
+                            th:value="${startTime}" onfocus="this.blur()">
+                        </input></td>
+                    <td>结束时间：</td>
+                    <td><input id="endTime" name="endTime"  type="text"
+                            th:value="${endTime}" onfocus="this.blur()">
+                        </input></td>
+                    <td>
+                    </td>
+                    <td style="text-align:right">
+                    <button type="button" class="btn btn-primary"   name="btnQuery" id="btnQuery" onclick="javascript:$('#orderByFormAlbumRevenue').submit();" >查询</button>
+                    <button type="button" class="btn btn-primary"   name="btnQuery" id="btnQuery" onclick="javascript:$('#exportForm').submit();" >导出</button></td>
+                </tr>
+            </table>
+         </div>
+         <div id="tbdata">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>
+                    Summary:<label th:text="${summary}"></label>
+                    </td>
+                    <td>client Revenue:
+                    <a href="#" th:text="${clientRevenue}" onclick="toPageView('0')"></a>
+                    </td>
+                    <td>Web Revenue
+                    <a href="#" th:text="${webRevenue}" onclick="toPageView('1')"></a>
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-bordered table-striped" >
+                
+                <thead>
+                    <tr>
+                        <th>
+                            Album Title</th>
+                            <th>
+                            Artist Title</th>
+                            <th>
+                            <span id="totalRevenue" order="totalRevenue"  class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>
+                            Total Revenue</th>
+                            <th>
+                            <span id="albumRevenue" order="albumRevenue" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>
+                            Full Album Revenue</th>
+                            <th>
+                            <span id="trackRevenue" order="trackRevenue" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>
+                            Single Track Revenue</th>
+                            <th>
+                            <span id="albumPaymentCount" order="albumPaymentCount" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>
+                            Album Payment</th>
+                            <th>
+                            <span id="trackPaymentCount" order="trackPaymentCount" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>
+                            Track Payment</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr  th:each="item : ${pageView.resultList}">
+                        <input type="hidden" name="albumid" th:value="${item.albumId}"></input>
+	                    <td th:text="${item.albumTitle}"></td>
+	                    <td th:text="${item.artistTitle}"></td>
+	                    <td th:text="${item.totalRevenue}"></td>
+	                    <td th:text="${item.albumRevenue}"></td>
+	                    <td th:text="${item.trackRevenue}"></td>
+	                    <td th:text="${item.albumPaymentCount}"></td>
+	                    <td th:text="${item.trackPaymentCount}"></td>
+	                </tr>
+                </tbody>
+            </table>
+            <div>
+                 <nav id="tslCommon-Page">
+                    <input type="hidden" name="currentPageNum" th:value="${pageView.currentPageNum}"/>
+                    <input type="hidden" name="totalPageCnt" th:value="${pageView.totalPageCnt}"/>
+                    <input type="hidden" name="totalRecord" th:value="${pageView.totalRecord}"/>
+                </nav>
+            </div>
+            
+        </div>
+    </form>
+    <div id="hidden" align="center" style="display:'none'" >
+	    <form id="exportForm" th:action="@{/exportAlbumRevenue}">
+	        <input type="hidden" id="e_albumName" name="albumName" th:value="${albumName}"></input>
+	        <input type="hidden" id="e_singerName" name="singerName" th:value="${singerName}"></input>
+	        <input type="hidden" id="e_albumCategory" name="albumCategory" th:value="${categoryId}"></input>
+	        <input type="hidden" id="e_startTime" name="startTime" th:value="${startTime}"></input>
+	        <input type="hidden" id="e_endTime" name="endTime" th:value="${endTime}"></input>
+	        <input type="hidden" id="e_orderByStr" name="orderByStr" th:value="${orderByStr}"></input>
+	    </form>
+    </div>
+    <div id="hiddenToPageView">
+        <form id="albumPageView" th:action="@{/AlbumPageView}">
+            <input type="hidden" id="source" name="source"></input>
+            <input type="hidden" id="p_startTime" name="startTime" th:value="${startTime}"></input>
+            <input type="hidden" id="p_endTime" name="endTime" th:value="${endTime}"></input>
+            <input type="hidden" id="p_albumName" name="albumName" th:value="${albumName}"></input>
+            <input type="hidden" id="p_singerName" name="singerName" th:value="${singerName}"></input>
+            <input type="hidden" id="p_albumCategory" name="albumCategory" th:value="${categoryId}"></input>
+        </form>
+    </div>
+    </div>
+<script th:inline="javascript">
+        /*<![CDATA[*/
+            $('#startTime').datetimepicker({
+                autoclose:true,
+                todayBtn:1,
+                todayHighlight:true,
+                format: 'yyyy-mm-dd hh:ii',
+                minuteStep:1,
+                autoclose:true
+            });
+        
+            $('#endTime').datetimepicker({
+                autoclose:true,
+                todayBtn:1,
+                todayHighlight:true,
+                format: 'yyyy-mm-dd hh:ii',
+                minuteStep:1,
+                autoclose:true
+            });
+            
+            
+            function toPageView(source) {
+            	$('#source').val(source);
+            	$('#albumPageView').submit();
+            }
+            
+        /*]]>*/
+    </script>
+
+</body>
+</html>

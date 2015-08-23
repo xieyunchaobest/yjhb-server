@@ -1,0 +1,27 @@
+/* customized style for album audio component */
+
+.audiojs { float:left; margin-right:14px; height: 30px; width:43px;
+background: none; /*border: 1px solid #9E9E9E;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F0F0F0), color-stop(0.5, #555), color-stop(0.51, #F0F0F0), color-stop(1, #F0F0F0));*/
+/*background-image: -moz-linear-gradient(center top, #F0F0F0 0%, #555 50%, #F0F0F0 51%, #F0F0F0 100%);box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);*/
+-webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0);
+-o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+}
+.audiojs .play-pause { width: 45px; height: 30px; padding: 0px 0px 0px 0px;}
+.audiojs p { width: 45px; height: 30px; margin: 0px 0px 0px 0px; }
+.audiojs .scrubber { display:none; background: #5a5a5a; width: 310px; height: 10px; margin: 5px; }
+.audiojs .progress { height: 10px; width: 0px; background: #ccc;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(0.5, #ddd), color-stop(0.51, #ccc), color-stop(1, #ccc));
+background-image: -moz-linear-gradient(center top, #ccc 0%, #ddd 50%, #ccc 51%, #ccc 100%); }
+.audiojs .loaded { height: 10px; background: #000;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #222), color-stop(0.5, #333), color-stop(0.51, #222), color-stop(1, #222));
+background-image: -moz-linear-gradient(center top, #222 0%, #333 50%, #222 51%, #222 100%); }
+.audiojs .time { display:none; float: left; height: 25px; line-height: 25px; }
+.audiojs .error-message { display:none; height: 24px;line-height: 24px; }
+
+.track-details { display:none; clear: both; height: 20px; width: 448px; padding: 1px 6px; background: #eee; color: #222; font-family: monospace; font-size: 11px; line-height: 20px;
+-webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.15); -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.15); }
+.track-details:before { content: '? '; }
+.track-details em { font-style: normal; color: #999; }

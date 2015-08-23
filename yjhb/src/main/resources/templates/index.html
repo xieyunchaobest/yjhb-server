@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>My test project</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>	
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<script type="text/javascript" th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/app/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+	<script th:inline="javascript" th:src="@{/app/js/commonPageAndSort.js}"></script>
+	
+</head>
+
+<body>
+	<form id="orderByForm" action="/index.html">
+		<p><h3><strong>bootstrap简单表单的分页排序Doem</strong></h3></p>
+		<input type="hidden" id="orderByStr" name="orderByStr" th:value="${orderByStr}"/>
+		<table class="table table-bordered" style="padding:0;margin-bottom:2px;width:50%">
+			<thead>
+				<tr>
+					<th>
+						<span id="test" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>
+						&nbsp;&nbsp;test
+					</th>
+					<th>
+						<span id="name" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;"></span>
+						&nbsp;&nbsp;name
+					</th>
+				</tr>
+			</thead>
+			<tr>
+				<td>123456</td>
+				<td>小心火烛</td>
+			</tr>
+		</table>
+		<nav id="tslCommon-Page">
+		  <input type="hidden" name="currentPageNum" th:value="${currentPageNum}"/>
+		  <input type="hidden" name="totalPageCnt" th:value="${totalPageCnt}"/>
+		</nav>
+	</form>
+</body>
+</html>

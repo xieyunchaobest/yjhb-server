@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>My test project</title>
+	<link rel="stylesheet" th:href="@{/app/css/main.css}" />
+	<link rel="stylesheet" th:href="@{/app/css/zTreeStyle.css}" />
+	<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+	<script th:src="@{/app/js/vendor/jquery.ztree.core-3.5.min.js}"></script>
+<script type="text/javascript">
+var setting = {	};
+
+
+$(document).ready(function(){
+	var val = $("#mmm").val();
+	var zNodes=eval('('+val+')');  
+	$.fn.zTree.init($("#funcmenu"), setting, zNodes);
+});
+ 
+
+	
+</script>
+
+
+</head>
+
+<body>
+	<form action="/saveInfo">
+		
+		<input type="hidden" id="mmm" th:value="${funcMenuList}" />
+	</form>
+	<div align="center" id="funcTree">
+		<div class="menu fleft"
+			style="height: 607px; overflow-y: scroll; overflow-x: hidden">
+			<ul id="funcmenu" class="ztree"></ul>
+		</div>
+	</div>
+</body>
+</html>

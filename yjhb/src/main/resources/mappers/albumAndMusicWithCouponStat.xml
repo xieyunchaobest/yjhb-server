@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sonychina.statistic" >
+   
+  <select id="qryCondition4getAlbumAndMusicWithCouponStatCount" resultType="java.lang.Long" parameterType="java.util.HashMap">
+	select count(1) from  (
+	 <include refid="getAlbumAndMusicWithCouponStat"/>  
+	 ) t
+  </select> 
+  
+  <select id="qryCondition4getAlbumAndMusicWithCouponStat" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    WITH query AS
+ (SELECT inner_query.*,
+         ROW_NUMBER() OVER(ORDER BY ${orderBys}) as rn
+    FROM (
+             <include refid="getAlbumAndMusicWithCouponStat"/>  
+           ) inner_query)
+SELECT   *
+  FROM query
+ <![CDATA[ WHERE rn  >= #{start} AND rn  <= #{end} ]]>
+  </select>
+  
+  <sql id="getAlbumAndMusicWithCouponStat">
+	  select tt.*, 0 as qflag
+  from (select vod.musicName,
+               vod.albumName,
+               sum(vod.price) as revenue,
+               0 as albumPayCount,
+               count(*) as trackPayCount,
+               (sum(vod.price) / (vc.discount / 100) - sum(vod.price)) as couponAmount,
+               vod.music_Id,
+               vod.album_id,
+               vc.discount
+          from  [PlayNow].[dbo].[V_PN_MUSICORDERDETAIL] vod, [PlayNow].[dbo].[V_COUPONINFO] vc
+           <![CDATA[ 
+         where vod.COMBINED_TYPE <> 'W'
+           and vod.music_id = vc.TRACK_ID
+           and vod.order_id = vc.order_id 
+           ]]> 
+            <include refid="qryCondition4getAlbumAndMusicWithCouponStat"/> 
+         group by vc.discount,
+                  vod.music_Id,
+                  vod.album_id,
+                  vod.musicName,
+                  vod.albumName
+        union all
+        SELECT vod.musicName,
+               vod.albumName,
+               sum(vod.price) as revenue,
+               0 as albumPayCount,
+               count(*) as trackPayCount,
+               0 as couponAmount,
+               vod.music_Id,
+               vod.album_id,
+               0 as discount
+          FROM [PlayNow].[dbo].[V_PN_MUSICORDERDETAIL] vod
+            <![CDATA[ 
+         where vod.COMBINED_TYPE <> 'W'
+           and not exists (select 1
+                  from [PlayNow].[dbo].[V_COUPONINFO] v
+                 where v.track_id = vod.music_id
+                   and v.order_id = vod.order_id)]]> 
+                    <include refid="qryCondition4getAlbumAndMusicWithCouponStat"/> 
+         group by vod.music_id, vod.musicName, vod.album_Id, vod.albumName) tt
+          
+          
+union all
+select vv.*, 1 as qflag
+  from (select '整张专辑' as musicName,
+               vod.albumName,
+               sum(vod.price) as revenue,
+               count(*) as albumPayCount,
+               0 as trackPayCount,
+               (sum(vod.price) / (vc.discount / 100) - sum(vod.price)) as couponAmount,
+               0 as music_Id,
+               vod.album_id,
+               vc.discount
+          from [PlayNow].[dbo].[V_PN_MUSICORDERDETAIL] vod, [PlayNow].[dbo].[V_COUPONINFO] vc
+         where vod.COMBINED_TYPE = 'W'
+           and vod.album_id = vc.album_ID
+           and vod.order_id = vc.order_id
+            <include refid="qryCondition4getAlbumAndMusicWithCouponStat"/> 
+         group by vc.discount, vod.album_id, vod.albumName
+        union all
+        SELECT '整张专辑' as musicName,
+               vod.albumName,
+               sum(vod.price) as revenue,
+               count(*) as albumPayCount,
+               0 as trackPayCount,
+               0 as couponAmount,
+               0 as music_Id,
+               vod.album_id,
+               0 as discount
+          FROM [PlayNow].[dbo].[V_PN_MUSICORDERDETAIL] vod
+         where vod.COMBINED_TYPE = 'W'
+           and not exists (select 1
+                  from [PlayNow].[dbo].[V_COUPONINFO] v
+                 where v.album_id = vod.album_id
+                   and v.order_id = vod.order_id)
+                    <include refid="qryCondition4getAlbumAndMusicWithCouponStat"/> 
+         group by vod.musicName, vod.album_Id, vod.albumName) vv
+	</sql>
+	
+	<select id="exportAlbumAndMusicWithCouponStat" parameterType="java.util.HashMap"  resultType="java.util.HashMap">
+    select * from (
+        <include refid="getAlbumAndMusicWithCouponStat"/>
+    ) query order by ${orderBys}
+  </select>
+	
+	<sql id="qryCondition4getAlbumAndMusicWithCouponStat">
+		<if test="artist != null and artist !=''">
+			and  vod.artistName=#{artist}
+		</if>
+		<if test="startTime != null and startTime !=''">
+			 <![CDATA[ and  convert(varchar(10),vod.acquistion_time,120) >=#{startTime}  ]]>
+		</if>
+		<if test="endTime != null and endTime !=''">
+			 <![CDATA[ and   convert(varchar(10),vod.acquistion_time,120)<=#{endTime}  ]]>
+		</if>
+		
+		 <if test="platForm != null and platForm =='w'.toString()">
+			 <![CDATA[ and (vod.imei is null or  vod.imei ='') ]]>
+		</if>
+		<if test="platForm != null and platForm =='m'.toString()">
+			 <![CDATA[ and (vod.imei is not null or  vod.imei <>'') ]]>
+		</if>
+	</sql>
+	
+  
+  
+</mapper>

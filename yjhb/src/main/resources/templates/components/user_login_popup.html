@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="copy">
+		<li class="loginPlatformSelector-popup login-fist-item">
+			<form th:action="@{/oauth/sina}" method="post">
+				<input type="hidden" name="forwardUrl" /> <input type="hidden"
+					name="orderAlbumList" /> <input class="oauth-icon" type="image"
+					th:src="@{/app/img/smw_Login_weibo_icn.png}" />
+				<button type="submit" style="width:100%;" class="btn btn-link login-oauth-name">新浪微博</button>
+			</form>
+		</li>
+		<li class="loginPlatformSelector-popup">
+			<form th:action="@{/oauth/baidu}" method="post">
+				<input type="hidden" name="forwardUrl" /> <input type="hidden"
+					name="orderAlbumList" /> <input class="oauth-icon" type="image"
+					th:src="@{/app/img/smw_Login_baidu_icn.png}" />
+				<button type="submit" style="width:100%;" class="btn btn-link login-oauth-name">百度ID</button>
+			</form>
+		</li>
+	</div>
+</body>
+</html>

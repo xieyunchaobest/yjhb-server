@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<header th:fragment="copy">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"
+			id="header-bar">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+					<span>
+							<a style="padding-left: 0px;" th:href="@{/index.html}"
+								class="main-nav-a" onclick="updateNavBarActiveStatus(this)">
+								<img width="" th:src="@{/app/img/logo_text.png}"
+								style="width: 191px; border: 0px; height: 50px; margin-top: 7px; margin-left: 20px;" />
+							</a>
+					</span> 
+					<span style="margin-left:50px;"> 
+					   <a class="headertext" href="javascript:void(0)" onclick="initMainPage('manage')">后台管理</a>
+					   <form th:action="@{/manage}" method="post" id="manageForm" style="display:none">
+					       <input type="hidden" name="fromMenu" value="manage"/>  
+					   </form>
+					</span>
+					<span > 
+                    <a class="headertext" href="javascript:void(0)" onclick="initMainPage('query')">统计查询</a>
+                       <form th:action="@{/manage}" method="post" id="queryForm" style="display:none">
+                            <input type="hidden" name="fromMenu" value="query"/> 
+                       </form>
+                    </span>
+                    <span class="greeting" style="float:right;"
+                                        th:unless="${session.containsKey('user')}">
+                        <a href="#" class="greeting">你好，xxx</a>
+                    </span> 
+                    <span class="greeting" th:if="${session.containsKey('user')}">
+                                                                          您好，
+                    <span class="greeting"
+                                        th:text="${#strings.isEmpty(session.user.name)}? 匿名用户: ${session.user.name}" /></span>
+                    <span class="glyphicon glyphicon-off" onclick="loginOut()"></span>
+			</div>
+		</nav>
+		<script th:inline="javascript">
+        /*<![CDATA[*/
+        function initMainPage(flag){
+            if ('manage' === flag) {
+            	$("#manageForm").submit();
+            } else if ('query === flag') {
+            	$("#queryForm").submit();
+            } else {
+            	// do nothing
+            }
+        }
+        
+        function loginOut(){
+        	window.location.href="loginOut";
+        }
+        /*]]>*/
+    </script>
+	</header>
+	
+</body>
+</html>

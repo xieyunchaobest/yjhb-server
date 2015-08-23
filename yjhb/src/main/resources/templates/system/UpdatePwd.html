@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+
+<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/app/validation/jquery.validate.min.js}"></script>
+<script th:src="@{/app/js/public.js}"></script>
+<script type="text/javascript">
+
+$().ready(function() {
+	 formValidate();
+}); 
+
+function formValidate(){
+	 $("#fmUpdatePwd").validate({
+	     	focusInvalid:false	, 
+	     	rules : { 
+	     		"orginalPassword":{
+	     			required:true,
+	     			minlength:4,
+	     			maxlength:12,
+	     			remote:{
+	     				 type:"POST",
+	     				 url:basePath+"/userMgr/valitePwd",   
+	     				 data:{
+	     					orginalPassword:function(){
+	     						return $('#orginalPassword').val();
+	     					},
+	     					sysUserId:function(){
+	     						return $('#sysUserId').val();
+	     					},
+	     					newPassword:function(){
+	     						return $('#newPassword').val();
+	     					}
+	     				 }
+	     			}
+	     		},
+	     		"confirmPassword":{
+	     			required:true
+	     		},
+	     		"mailAdress":{
+	     			email:true
+	     		}
+	     	},
+	         messages: {
+	        	 "orginalPassword": {
+                     remote: "Password Error"
+                 }
+	         }
+	     });
+}
+
+</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<form id="fmUpdatePwd" th:action="@{/userMgr/updatePwd}">
+			<div style="display: none">
+				<input type="hidden" id="sysUserId" name="sysUserId"
+					th:value="${session.user.id}" />
+			</div>
+			<div id="userAdd">
+				<div style="width:200px;margin:0 auto;height:30px;line-height:30px;font-weight:bold;font-size:16px;">
+					Update Password
+				</div>
+				<table class="table table-bordered table-striped">
+					<tr>
+						<td align="right">User Name：</td>
+						<td th:text="${session.user.name}"></td>
+					</tr>
+					<tr>
+						<td align="right">Orginal Password：</td>
+						<td><input type="password" id="orginalPassword" name="orginalPassword" />
+						</td>
+					</tr>
+					<tr>
+						<td align="right">New Password：</td>
+						<td><input type="password" id="newPassword"
+							name="newPassword" /></td>
+					</tr>
+					<tr>
+						<td align="right">Password Confirm：</td>
+						<td><input type="password" id="confirmPassword"
+							name="confirmPassword" /></td>
+					</tr>
+				</table>
+				<div style="width:100;margin:0 auto">
+					<button type="submit" class="btn btn-primary" >OK</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

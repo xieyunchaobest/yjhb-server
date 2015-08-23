@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" ng-app="myApp">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>SonySelect管理查询系统</title>
+<meta name="description" content="丰富的高解析度音乐,专辑下载,音频均为96khz/24bit,涵盖古典,流行,爵士等不同风格. Sony Select provides high resolution music and album download,audio format is 96khz/24bit,music style contains classical,POP,jazz and so on." />
+<meta name="keywords"  content="索尼精选,高解析度音乐,无损音乐,96khz,24bit,hires,古典,流行,爵士,flac,walkman" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="baidu-site-verification" content="F655wxOR5H" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/main.css}" />
+<link rel="stylesheet" th:href="@{/app/css/reset.css}" />
+<link rel="stylesheet" th:href="@{/app/css/components.css}" />
+<link rel="stylesheet" th:href="@{/app/css/cart.css}" />
+<link rel="stylesheet" th:href="@{/app/css/order-pay.css}" />
+<link rel="shortcut icon" th:href="@{/app/img/favicon.png}"/>
+<link rel="stylesheet" th:href="@{/app/css/zTreeStyle.css}" />
+<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+<script th:src="@{/app/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap.min.js}"></script>
+<script th:src="@{/app/js/vendor/jquery.ztree.core-3.5.min.js}"></script>
+<script th:src="@{/app/js/vendor/jquery-scrollto.js}"></script>
+</head>
+<body>
+	<div id="main">
+		<header id="header" th:include="components/header :: copy"></header>
+		<div th:include="${page} :: copy" class="bodyContainer" id="container"></div>
+		<!-- 
+		<footer th:include="components/footer :: copy"></footer>
+		 -->
+	</div>
+</body>
+</html>

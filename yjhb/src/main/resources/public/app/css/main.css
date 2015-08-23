@@ -1,0 +1,316 @@
+.w960 {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.marginmiddle {
+    margin: 0 auto;
+}
+
+
+.mainBlock {
+    height: auto;
+    position: relative;
+    background: #fff;
+    padding-bottom: 10px;
+}
+.mainBlockTop {
+    height: auto;
+    margin-bottom: 322px;
+    position: relative;
+    margin: 20px auto 20px auto;
+    z-index: 1;
+}
+.mainBlock h3{
+    border-left: 4px solid #fa9900;
+    padding-left: 9px;
+}
+.mainBlock .albumlist{
+    margin-left: -5px;
+    margin-right: -5px;
+}
+h3.blackColoe {
+    color: #3a3a3a;
+}
+
+.albumitem {
+    width: 220px;
+}
+.itemborder {
+    border: 1px solid rgb(233, 233, 233)
+}
+
+.col-md-24 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 5px;
+    padding-left: 5px;
+    float: left;
+    width: 20.000000%;
+}
+
+.albumicon {
+    padding: 1px;
+    width: 100%;
+    height: 100%;
+}
+
+.iblock {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.pl10 {
+    padding-left: 10px;
+}
+
+.pr10 {
+    padding-right: 10px;
+}
+
+.fr {
+    float: right;
+}
+
+.db {
+    display: block;
+}
+
+.col-md-6 div{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    position: relative;
+}
+.center-block-wrap {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+.center-block-lt {
+    float: left;
+    padding-right: 70px;
+    width: 75%;
+    min-width: 300px;
+}
+.center-block-rt {
+    float: right;
+    margin-left: -300px;
+    width: 25%;
+    min-width: 200px;
+}
+.album-info-left {
+    margin-top: 50px;
+}
+.album-info-right {
+    margin-top: 50px;
+}
+.info-left {
+    float: left;
+}
+.info-middle {
+    margin-left: 240px;
+}
+.info-right {
+    margin-bottom: 20px;
+}
+.img-box {
+    width: 220px;
+}
+.buy-btn {
+    min-width: 200px;
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.divider {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 2px;
+    background-color: #ccc;
+}
+.similar-list-box {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.similar-box {
+    margin-bottom: 10px;
+}
+.similar-left {
+    float: left;
+}
+.similar-box .img-box {
+    margin-top: 5px;
+    width: 110px;
+}
+.similar-right {
+    margin-left: 110px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.similar-img {
+    width: 100%;
+    height: 100%;
+}
+#main-category-list>li>a:hover{
+    background-color:#999;
+    color:#fff;
+    border-radius: 0px;
+}
+#main-category-list>li>a.disable:hover{
+	background-color: black !important;
+}
+
+#main-category-list>li>a{
+    color:#000;
+    height: 28px;
+    line-height: 28px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+#main-category-list>li{
+	height: 28px;
+	padding-top: 7px;
+    /*border-left: 1px solid #000;*/
+}
+#main-category-list{
+    margin-right:170px; 
+    margin-left: auto;
+    width: auto;
+    float:right;
+    margin-top: 17px;
+    font-size: 15px;
+    padding-left: -0.5px;
+    padding-right: -0.5px;
+}
+#main-category-list a.active {
+    background-color: black;
+    border-radius: 0px;
+    color:#fff;
+}
+
+#main-category-list>li+li {
+margin-left: 0px;
+}
+
+
+///////////////////////////////////////////
+// Need to be removed
+#footer {
+    position: absolute;
+    bottom: 0;
+    height: 400px;
+    width: 100%;
+    background:#000;
+    color: #2c69b5;
+    text-align: left;
+}
+#footer a{
+    color: #10A0D5;
+}
+#footer h5{
+    color: #fff;
+}
+#footer-list{
+    font-size:12px;
+    height:auto;
+    padding: 20px 0 20px 0;
+}
+#footer-bottom ul{
+    font-size:12px;
+    padding: 20px 0 20px 0;
+    border-top:1px solid #9B9B9B;
+    list-style:none outside none;
+}
+#footer-bottom ul li{
+    float:left; 
+    padding: 4px 20px;
+}
+
+#myCarousel .carousel {
+    width:100%;
+    margin:0px auto;
+    overflow: hidden;
+    background-size:cover;
+}
+#myCarousel .carousel-control{
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    top: 40%;
+    float: none;
+}
+#myCarousel .carousel-control.left{
+    background: url('http://www.sonystyle.com.cn/images/btn-left.png') no-repeat scroll 0% 0% transparent;
+    left: 60px;
+}
+#myCarousel .carousel-control.right{
+    background: url('http://www.sonystyle.com.cn/images/btn-right.png') no-repeat scroll 0% 0% transparent;
+    right: 60px;
+}
+#myCarousel .carousel-control.right:hover {
+    background: url('http://www.sonystyle.com.cn/images/btn-right-on.png') no-repeat scroll 0% 0% transparent;
+}
+#myCarousel .carousel-control.left:hover {
+    background: url('http://www.sonystyle.com.cn/images/btn-left-on.png') no-repeat scroll 0% 0% transparent;
+}
+.carousel-indicators{
+    position: absolute;
+    height: 30px;
+    bottom: 0px;
+    width: 100%;
+    margin-left: 0%;
+    margin-bottom:0%;
+    left:0px;
+    right:0px;
+    text-align: center;
+    background: url('http://www.sonystyle.com.cn/images/kv_bar_bg.png') repeat-x scroll 0% 0% transparent;
+}
+#myCarousel .carousel-indicators li{
+    background-color: #008DD2;
+    height: 3px;
+    width: 55px;
+    border:0px;
+}
+#myCarousel .carousel-indicators .active{
+    background-color: #FFF;
+    height: 3px;
+    width: 55px;
+    border:0px;
+}
+
+.navbar-inverse{
+    background: #000;
+}
+.navbar-brand{
+    background: url("img/header_logo.jpg") no-repeat scroll 0px center transparent;
+    margin: 0px;
+    display: block;
+    width: 125px;
+    float: left;
+}
+.navbar-form{
+    margin-left: 50px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+#hiRes-intro{
+    position:absolute;
+    right:20%;
+    top:20%;
+    bottom:20%;
+    z-index:100;
+    background-color:#FFF;
+}
+#hiRes-intro.button{
+    left:10%;
+    bottom:20%;
+}
+#bestSellingMusicItem .col-md-6{
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+#bestSellingMusicItem{
+    margin-bottom: -1px;
+}

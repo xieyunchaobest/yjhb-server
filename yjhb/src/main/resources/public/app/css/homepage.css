@@ -1,0 +1,33 @@
+.artists {
+	height: 450px;
+	position: relative;
+	background: #fff;
+	padding-bottom: 10px;
+}
+
+.artists header {
+	height: auto;
+	margin-bottom: 322px;
+	position: relative;
+	margin: 20px auto 20px auto;
+	z-index: 1;
+}
+
+.artists header h3 {
+	border-left: 8px solid #54a6dd;
+	padding-left: 9px;
+	color: #3a3a3a;
+	display: inline-block;
+	height: 32px;
+	font-size: 28px;
+	font-family: Simhei;
+}
+
+.artists .thumbnail {
+	padding: 0px;
+	border-width: 0px;
+}
+
+.artists .thumbnail a {
+	display: block;
+}

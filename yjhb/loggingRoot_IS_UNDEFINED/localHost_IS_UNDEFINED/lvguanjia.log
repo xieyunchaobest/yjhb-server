@@ -1,0 +1,27 @@
+
+591  [2015-07-28 18:16:16 ] -   [ip=, ref=, ua=, sid=]
+  INFO  com.sonychina.backend.Application - Starting Application on BJ5109I10108 with PID 8268 (D:\workspaces\ws-1\SonyBackendManage\target\classes started by 5109i10108 in D:\workspaces\ws-1\SonyBackendManage)
+
+634  [2015-07-28 18:16:16 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.s.b.c.e.AnnotationConfigEmbeddedWebApplicationContext - Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@5bb5b88c: startup date [Tue Jul 28 18:16:16 CST 2015]; root of context hierarchy
+
+1440 [2015-07-28 18:16:17 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.s.b.f.s.DefaultListableBeanFactory - Overriding bean definition for bean 'beanNameViewResolver': replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+
+2008 [2015-07-28 18:16:17 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.0.3.Final
+
+2135 [2015-07-28 18:16:17 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$a34f2c2a] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+2160 [2015-07-28 18:16:17 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionAttributeSource' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+2170 [2015-07-28 18:16:17 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'transactionInterceptor' of type [class org.springframework.transaction.interceptor.TransactionInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+2174 [2015-07-28 18:16:17 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+2492 [2015-07-28 18:16:18 ] -   [ip=, ref=, ua=, sid=]
+  INFO  o.s.b.c.e.t.TomcatEmbeddedServletContainerFactory - Server initialized with port: 8080

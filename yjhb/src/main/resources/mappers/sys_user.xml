@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sonychina.statistic" >
+   <select id="getFuncNodeListByUser" resultType="java.util.HashMap" parameterType="com.xyc.proj.entity.SysUser">
+  	with fn as
+ (select id,name,pid,depth,type,url,seq,code
+    from SYS_FUNC_NODE
+   where id in (SELECT SFN.id
+                  FROM [PlayNowLog].[dbo].[SYS_USER]      SU,
+                       [PlayNowLog].[dbo].[SYS_ROLE]      SR, 
+                       [PlayNowLog].[dbo].[SYS_ROLE_USER] SRU,
+                       [PlayNowLog].[dbo].[SYS_FUNC_NODE] SFN,
+                       [PlayNowLog].[dbo].[SYS_ROLE_FUNC] SRF
+                 WHERE SU.ID = SRU.USER_ID
+                   AND SR.ID = SRU.ROLE_ID
+                   AND SFN.ID = SRF.FUNC_NODE_ID
+                   AND SRF.ROLE_ID = SR.ID
+                   AND SU.ID = #{id})
+  union all
+  select sfn.id,sfn.name,sfn.pid,sfn.depth,sfn.type,sfn.url,sfn.seq,sfn.code
+    from fn, [PlayNowLog].[dbo].[SYS_FUNC_NODE] sfn
+   where fn.pid = sfn.id)
+select distinct * from fn
+  </select>
+  
+  <select id="getSysUserCount" resultType="java.lang.Long" parameterType="java.util.HashMap">
+	select count(1) from sys_user where is_delete = 0 
+	 <include refid="qryCondition"/>  
+  </select> 
+  
+  <select id="getSysUserMapPageList" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+    WITH query AS
+ (SELECT inner_query.*,
+         ROW_NUMBER() OVER(ORDER BY ${orderBys}) as rn
+    FROM (select  ID as id,
+					NAME as name,
+					PASSWORD as password,
+					STAFF_NAME as staffName,
+					PHONE_NO as phoneNo,
+					MAIL_ADDRESS as mailAddress, 
+					UPDATE_PWD_TIME as updatePwdTime,
+					LOGIN_COUNT as loginCount
+            from sys_user
+           where is_delete = 0 
+             <include refid="qryCondition"/>  
+           
+           ) inner_query)
+SELECT   id,name,password,staffName,phoneNo,mailAddress,updatePwdTime,loginCount
+  FROM query
+ <![CDATA[ WHERE rn  >= #{start} AND rn  <= #{end} ]]>
+
+  </select>
+  
+  <sql id="qryCondition">
+	<if test="parm.name != null and parm.name !=''">
+		and name like '%'+#{parm.name}+'%'
+	</if>
+	</sql>
+  
+  
+</mapper>

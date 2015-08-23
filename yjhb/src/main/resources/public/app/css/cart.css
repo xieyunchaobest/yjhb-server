@@ -1,0 +1,244 @@
+/*/////////////////////////////////////////////////////*/
+/* for cart page*/
+
+.cart {
+	height: auto;
+	margin-top: 30px;
+	margin-bottom: 70px;
+}
+
+.cart header {
+	height: auto;
+	position: relative;
+}
+
+.cart header h3 {
+    border-left: 8px solid #54a6dd;
+    padding-left: 9px;
+    color: #3a3a3a;
+    display: inline-block;
+    cursor: pointer;
+    height: 32px;
+    font-size: 28px;
+    font-family: Simhei;
+}
+
+.cart .cart-function-block {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	overflow: hidden;
+}
+
+.cart .cart-function-block-top {
+	border-bottom: 2px solid #cccccc;
+}
+
+.cart .cart-function-block-bottom {
+    border-top: 2px solid #cccccc;
+}
+
+.cart .checkbox-all {
+	padding-left: 16px;
+    padding-right: 12px;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.cart .cart-function-block form {
+    float: right;
+}
+
+.cart .cart-function-block .album-selected-count-label {
+	float: right;
+	margin-right: 20px;
+	padding-top: 6px;
+	margin-bottom: 0;
+}
+
+.cart-function-block .btn-clear-cart, .cart-function-block .album-selected-count {
+	font-size: 14px;
+	color: red;
+}
+
+.cart-function-block .cart-total-price {
+	font-size: 18px;
+    color: red;
+}
+
+.cart-function-block .btn-order-confirm {
+	width: 158px;
+	height: 30px;
+	margin-top: 3px;
+	border-radius: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	font-weight: bold;
+}
+
+.cart-function-block .btn-tracks-delete {
+	color: black;
+}
+
+.panel-group {
+	margin-bottom: 0;
+}
+
+.panel-title .album-col-info {
+	padding-left: 0;
+}
+
+.panel-title .album-col-price-expand {
+	padding-right: 0;
+}
+.panel-title .album-col-price {
+	padding-top: 10px;
+	float: right;
+}
+
+.panel-title .album-col-price p {
+	text-align: right;
+	margin-bottom: 0;
+}
+
+.panel-title .album-col-price .track-selected {
+	font-size: 16px;
+	color: black;
+}
+
+.panel-title .album-col-format {
+	padding-top: 15px;
+}
+
+.panel-title .album-col-format img {
+    height: 32px;
+    width:32px;
+}
+
+.panel-title .album-checkbox {
+	float: left;
+	margin-top: 35px;
+	margin-right: 17px;
+}
+
+.panel-title .album-col-expand {
+	width: auto;
+	height: 75px;
+	float: right;
+	padding-left: 20px;
+	text-align: center;
+	padding-top: 10px;
+	padding-right: 10px;
+}
+
+.panel-title .cartalbumicon {
+	height: 72px;
+	width: 72px;
+	float: left;
+}
+
+.cartalbuminfoblock {
+	float: left;
+	padding-left: 10px;
+}
+
+.cartalbuminfoblock .album-name {
+	font-size: 18px;
+	padding-top: 10px;
+	white-space: nowrap;
+    width: 250px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow:ellipsis;
+}
+
+.cartalbuminfoblock p {
+	margin-bottom: 5px;
+}
+
+.panel-heading .row, .panel-collapse .row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.panel-title .album-price {
+	text-decoration: line-through;
+}
+
+.panel-title .album-discount-price {
+    font-size: 24px;
+    color: #428bca;
+}
+
+.panel-collapse .panel-body {
+	padding: 10px;
+}
+
+.panel-body .track-col-checkbox {
+	padding-left: 33px;
+}
+
+.panel-body .track-col-name {
+    padding-left: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow:ellipsis;
+ }
+
+.panel-body .btn-track-delete {
+	float: right;
+	padding-bottom: 0;
+	padding-top: 0;
+	color: black;
+}
+
+.cart-empty {
+    height: 300px;
+    padding-top: 100px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 100px;
+}
+
+.cart-empty h3 {
+    text-align: center;
+}
+
+.cart-empty h3 i {
+	padding-right: 10px;
+}
+
+.bestsell-album-track {
+	margin-bottom: 120px;
+}
+
+.bestsell-album-track .bestsell-track {
+	margin-bottom: 30px;
+}
+
+#delecteconfirmmodal .modal-dialog .modal-content .modal-body .delete-confirm-block {
+	margin-top: 20px;
+}
+
+#delecteconfirmmodal .modal-dialog .modal-content .modal-body .delete-confirm-block::after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+#delecteconfirmmodal .modal-dialog .modal-content .modal-body {
+	padding: 20px 20px;
+}
+
+#delecteconfirmmodal .modal-dialog .modal-content .modal-body .delete-confirm-block .btn-delete-confirm {
+	float: right;
+	width: 100px;
+}
+
+#delecteconfirmmodal .modal-dialog .modal-content .modal-body .delete-confirm-block .btn-delete-cancel {
+    float: right;
+    width: 100px;
+    margin-right: 10px;
+}

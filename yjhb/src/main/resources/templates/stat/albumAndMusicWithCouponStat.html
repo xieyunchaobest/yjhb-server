@@ -1,0 +1,131 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>用户查询</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-datetimepicker.css}" />
+
+<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap.min.js}"></script>
+<script th:inline="javascript" th:src="@{/app/js/commonSort.js}"></script>
+<script th:inline="javascript" th:src="@{/app/js/commonPage.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/app/js/public.js}"></script>
+
+<script type="text/javascript">
+ 	function exportExcel(){
+		var path = basePath+"/stat/exportAlbumAndMusicWithCouponStat";  
+		$('#orderByForm').attr("action", path).submit();
+ 	}
+ 	
+ 	function query(){
+ 		var path = basePath+"/stat/albumAndMusicWithCouponStat";  
+		$('#orderByForm').attr("action", path).submit();
+ 	}
+ 	
+ 	function resetAction(){
+ 		var path = basePath+"/stat/albumAndMusicWithCouponStat";  
+		$('#orderByForm').attr("action", path);
+ 	}
+</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<form id="orderByForm" th:action="@{/stat/albumAndMusicWithCouponStat}" method="post">
+			<input type="hidden" id="orderByStr" name="orderByStr"   th:value="${orderBy}"/>
+		 <div class="row" id="qry" style="margin-right:15px;">
+		 	<div  class="col-xs-12" style="padding:10px;border:solid 1px #cccccc;margin:15px 15px;padding:10px 10px">
+		 		<div class="col-xs-3" style="width:180px;">
+		 			<label>Artist:</label>
+		 			<select  name="artist" style="height:25px;width:100px" >
+		 				<option value="">All</option>
+							<option th:each="art : ${artistList}"
+								th:value="${art.name}" th:text="${art.name}"
+								th:selected="${artist == art.name}"></option>
+					</select>
+		 		</div>
+		 		<div class="col-xs-3" style="width:180px;">
+		 			<label>PlatForm:</label>
+		 			<select  name="platForm" style="height:25px;width:60px" >
+		 				<option value="">All</option>
+						<option value="m" th:selected="${platForm == 'm'}">Mobile</option>
+						<option value="w" th:selected="${platForm == 'w'}">Web</option>
+					</select>
+		 		</div>
+		 		<div class="col-xs-4" style="width:350px;">
+		 			<label>Actision Time:</label>
+		 			<input name="startTime" class="input-append date" id="startTime" size="8"  onfocus="this.blur()"  th:value="${startTime}"/> -
+		 			<input name="endTime" id="endTime"   onfocus="this.blur()" th:value="${endTime}" size="8"/>
+		 		</div>
+		 		<div class="col-xs-2">
+		 			<button type="button" class="btn btn-primary"   name="btnQuery" id="btnQuery" onclick="javascript:query();" >查询</button>
+		 			<button type="button" class="btn btn-primary"   name="btnQuery" id="btnQuery" onclick="javascript:exportExcel();" >导出</button>
+		 		</div>
+		 	</div>
+		 </div>
+		 <div id="tbdata">
+			<table class="table table-bordered table-striped" >
+				<thead>
+					<tr>
+						<th width="23%">Track Name</th>
+						<th  width="23%">Album Name</th>
+						<th><span onmouseenter="resetAction();" id="revenue" order="revenue" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>Revenue</th>
+						<th><span onmouseenter="resetAction();" id="albumPayCount" order="albumPayCount" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>Album Payment</th>
+						<th><span onmouseenter="resetAction();" id="trackPayCount" order="trackPayCount" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>Track Payment</th>
+						<th>Coupon</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr  th:each="item : ${pageView.resultList}">
+						<td th:text="${item.musicName}"></td>
+						<td th:text="${item.albumName}"></td>
+						<td th:text="${item.revenue}"></td>
+						<td th:text="${item.albumPayCount}"></td>
+						<td th:text="${item.trackPayCount}"></td>
+						<td th:text="${item.couponAmount}"> </td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<div style="border:1px solid #fffff">
+					 <nav id="tslCommon-Page"  style="float:right">
+			  			<input type="hidden" name="currentPageNum" th:value="${pageView.currentPageNum}"/>
+			  			<input type="hidden" name="totalPageCnt" th:value="${pageView.totalPageCnt}"/>
+			  			<input type="hidden" name="totalRecord" th:value="${pageView.totalRecord}"/>
+					</nav>
+				</div> 
+			</div>
+		</div>
+	</form>
+	</div>
+<script th:inline="javascript">
+        /*<![CDATA[*/
+            $('#startTime').datetimepicker({
+                autoclose:true,
+                todayHighlight:true,
+                format: 'yyyy-mm-dd',
+                pickDate: true,  
+                pickTime: false,
+                minView:2
+            });
+        
+            $('#endTime').datetimepicker({
+                autoclose:true,
+                todayHighlight:true,
+                format: 'yyyy-mm-dd',
+                pickDate: true,  
+                pickTime: false ,
+                minView:2
+            });
+            
+            
+        /*]]>*/
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+/*all album css start*/
+#allAlbums{
+    background-color:#fff;
+}
+
+#allAlbums #header h3{
+    font-weight:bolder;
+    border-left-style:solid;
+    padding-left: 5px;
+    border-left-color: rgb(0, 181, 255);
+    border-left-width: 5px;
+}
+#allAlbums #header #menu{
+    margin-top: 20px;
+    border-style: solid;
+    border-width: thin;
+    border-color: gray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 2px;
+    padding-right: 5px;
+}
+
+#allAlbums #header{
+    padding: 0px;
+}
+
+#allAlbums #header select{
+    width: 10%;
+}
+
+#allAlbums #header #radioGroup{
+    float: right;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#allAlbums #content{
+    margin-top: 20px;
+}
+
+#albums div.thumbnail{
+    width: 220px;
+    padding:0px;
+    padding-bottom: 10px;
+    border:none;
+    box-shadow: none;
+}
+
+#albums div.thumbnail img{
+    width: 100%;
+}
+
+#albums{
+    webkit-box-shadow:none;
+    box-shadow:none;
+}
+
+#albums div.col-md-2{
+    width: 20%;
+}
+
+#albums .pagination{
+    float:right;
+}
+/*all album css end*/
+

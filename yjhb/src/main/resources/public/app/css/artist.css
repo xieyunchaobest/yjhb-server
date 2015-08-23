@@ -1,0 +1,61 @@
+/*/////////////////////////////////////////////////////*/
+/* for album page*/
+.introduction {
+	height:150px;
+	overflow:auto;
+}
+
+.song-line-item{
+	height:35px;
+	line-height:35px;
+	padding-top:2px;
+}
+
+#hotsong-table tbody tr td{
+	height:25px;
+	line-height:25px;
+	padding-top:15px;
+}
+
+
+.to-chart{
+	width:128px;
+	height:34px;
+	margin-right:10px;
+	background-color:#e4e4e4; 
+	border-radius:0px";
+}
+
+.buy{
+	width:128px;
+	height:34px;
+	margin-right:10px;
+	background-color:#008CD5;
+	border-radius:0px";
+	color:#ffffff
+}
+
+.dib{
+	display:inline-block;
+}
+
+.w80{
+	width:80px;
+}
+
+.ellipsis {
+	max-width: 260px;
+	vertical-align: middle;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.hotTrack {
+	width: 28px;
+	height: 14px;
+	padding: 0px;
+	margin-left:20px;
+	background: url(../img/smw_HiRes-Popular_hot_icn.png) no-repeat
+		0px 0px;
+}

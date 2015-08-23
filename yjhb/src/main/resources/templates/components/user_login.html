@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="copy">
+		<script th:src="@{/app/js/public.js}"></script>
+		<li class="loginPlatformSelectorHeader">
+			<div class="loginPlatformSelectorHeader-divider"></div>
+			<p class="loginPlatformSelectorHeader-content">使用第三方账号登录</p>
+		</li>
+		<li class="col-xs-12 col-sm-6 loginPlatformSelector">
+			<form th:action="@{/oauth/sina}" name="form" method="post"
+				onsubmit="checkcartpage('sina');">
+				<input type="hidden" name="orderAlbumList" /> <input
+					class="oauth-icon" type="image"
+					th:src="@{/app/img/smw_Login_weibo_icn.png}" />
+				<button type="submit" class="btn btn-link login-oauth-name">新浪微博</button>
+			</form>
+		</li>
+		<li class="col-xs-12 col-sm-6 loginPlatformSelector">
+			<form th:action="@{/oauth/baidu}" name="form1" method="post"
+				onsubmit="checkcartpage('baidu');">
+				<input type="hidden" name="orderAlbumList" /> <input
+					class="oauth-icon" type="image"
+					th:src="@{/app/img/smw_Login_baidu_icn.png}" />
+				<button type="submit" class="btn btn-link login-oauth-name" style="width:100%;">百度ID</button>
+			</form>
+		</li>
+	</div>
+</body>
+</html>

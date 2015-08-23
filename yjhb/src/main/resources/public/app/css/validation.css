@@ -1,0 +1,22 @@
+input:focus,
+textarea:focus { 
+	/*border: 1px dotted black;*/ 
+	border-color: #2b542c;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+}
+
+input.error {
+	/*border: 1px dotted;*/ 
+	color: #a94442;
+	border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+label.error {
+	/* remove the next line when you have trouble in IE6 with labels in list */
+	display: block;
+	font-style: italic;
+	color: red;
+}

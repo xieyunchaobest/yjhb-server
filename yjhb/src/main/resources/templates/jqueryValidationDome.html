@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<title>My test project</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>	
+	<meta charset="utf-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" th:href="@{/app/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/app/css/validation.css}"/>
+	<script type="text/javascript" th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+	<script type="text/javascript" th:src="@{/app/validation/jquery.validate.min.js}"></script>
+	<script type="text/javascript" th:src="@{/app/js/vendor/bootstrap.min.js}"></script>	
+	
+	<script type="text/javascript">
+	$().ready(function() {
+		$("#commentForm").validate();
+		
+		/*$('#datetimepicker').datetimepicker({
+			//yearOffset:222,
+			//lang:'ch',
+			//timepicker:false,
+			format:'yyyy-mm-dd'
+			//,
+			//formatDate:'Y/m/d',
+			//minDate:'-1970/01/02', // yesterday is minimum date
+			//maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+		});*/
+	});
+	</script>
+</head>
+
+<body>
+	<form id="commentForm" method="get" action="">
+	<div class="panel panel-default" >
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<label>Please provide your name, email address (won't be published) and a comment</label>
+		</div>
+		<table class="table">
+			<tr>
+				<td>
+					<span>Name (required, at least 2 characters)</span>
+				</td>
+				<td>
+					<input id="cname" name="name" minlength="2" type="text" required="required" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>E-Mail (required)</span>
+				</td>
+				<td>
+					<input id="cemail" type="email" name="cemail" required="required" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>E-Mail (required)</span>
+				</td>
+				<td>
+					<input id="cemail1" name="email" data-rule-required="true" data-rule-email="true" 
+						data-msg-required="Please enter your email address" data-msg-email="Please enter a valid email address" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>datetime</span>
+				</td>
+				<td>
+					<input type="text" value="2014-03-15" id="datetimepicker"/>
+					<!--<div class="input-append date form_datetime">
+						<input size="16" type="text" value="2014-01-11 12:05" readonly="readonly" />
+						<span class="add-on"><i class="icon-th"></i></span>
+					</div>
+					<input size="16" type="text" id="datetimepicker" name="datetime" value="2012-06-15 14:45" readonly="readonly" class="form_datetime" />  
+					<input type="text" value="2012-05-15 21:05" id="datetimepicker" name="datetime" data-date-format="yyyy-mm-dd hh:ii" required="required" />
+					-->
+					<label for="datetime" class="error" style="display:none">Please input your datetime</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>URL</span>
+				</td>
+				<td>
+					<input id="curl" type="url" name="url" data-rule-required="true" data-rule-url="true"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>please input date(yyyy-MM-dd)</span>
+				</td>
+				<td>
+					<input id="date" type="text" name="date" data-rule-required="true" data-rule-dateISO="true"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>please input digits</span>
+				</td>
+				<td>
+					<input id="digits" type="text" name="digits" data-rule-required="true" data-rule-digits="true"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Gender</span>
+				</td>
+				<td>
+					<label class="radio-inline">
+						<input type="radio" id="gender_male" value="m" name="gender" required="required" />Male
+					</label>
+					<label class="radio-inline">
+						<input type="radio" id="gender_female" value="f" name="gender" />Female
+					</label>
+					<label for="gender" class="error" style="display:none">Please select your gender</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Spam</span>
+				</td>
+				<td>
+					<label class="checkbox-inline">
+						<input type="checkbox" id="spam_email" value="email" name="spam[]" required="required" minlength="2" />Spam via E-Mail
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" id="spam_phone" value="phone" name="spam[]" />Spam via Phone
+					</label>
+					<label class="checkbox-inline">
+						<input type="checkbox" id="spam_mail" value="mail" name="spam[]" />Spam via Mail
+					</label>
+					<label for="spam[]" class="error" style="display:none">Please select at least two types of spam.</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Please select a jungle noun</span>
+				</td>
+				<td>
+					<select id="jungle" name="jungle" title="Please select something!" required="required">
+						<option value=""></option>
+						<option value="1">Buga</option>
+						<option value="2">Baga</option>
+						<option value="3">Oi</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Please select no more than two vergetables</span>
+				</td>
+				<td>
+					<select id="vegetables" name="vegetables" title="Please select no more than two vergetables" required="required" maxlength="2" multiple="multiple">
+						<option value="p">Potato</option>
+						<option value="t">Tomato</option>
+						<option value="s">Salad</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>Please select at least two cars, but no more than three</span>
+				</td>
+				<td>
+					<select id="cars" name="cars" title="Please select at least two cars, but no more than three" required="required" rangelength="[2,3]" multiple="multiple">
+						<option value="m_sl">Mercedes SL</option>
+						<option value="o_c">Opel Corsa</option>
+						<option value="vw_p">VW Polo</option>
+						<option value="t_s">Titanic Skoda</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" >
+					<button type="submit" class="btn btn-primary" >Submit</button>
+				</td>
+			</tr>
+		</table>
+	</div>	
+	</form>
+</body>
+</html>

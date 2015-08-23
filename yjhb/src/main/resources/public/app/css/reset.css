@@ -1,0 +1,544 @@
+/* ////////////////////////////////////////////////////////////// */
+/* Reset part and main layout */
+html, body {
+	height: 100%;
+}
+
+div {
+	display: block;
+}
+
+#main {
+	position: relative;
+	min-height: 100%;
+	_height: 100%;
+	background: #fff;
+}
+
+#container {
+	padding-bottom: 100px;
+	/* for fixed the nav header*/
+	padding-left: 20;
+	padding-right: 20;
+	margin-top: 90px;
+}
+
+.navbar-nav.navbar-right:last-child {
+	margin-right: 15px;
+}
+
+header nav div.container {
+	width: 960px;
+	padding: 0px;
+}
+
+header .pull-right {
+	padding-left: 7px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: white;
+}
+
+.container .greeting {
+	font-size: 12px;
+	color:#ffffff;
+	padding-top:25px;
+}
+
+.col-xs-5ths, .col-sm-5ths, .col-md-5ths, .col-lg-5ths {
+	position: relative;
+	min-height: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+	/*     width: 20%; */
+	/*     float: left; */
+}
+
+@media ( min-width : 768px) {
+	.col-sm-5ths {
+		width: 20%;
+		float: left;
+	}
+}
+
+@media ( min-width : 992px) {
+	.col-md-5ths {
+		width: 20%;
+		float: left;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.col-lg-5ths {
+		width: 20%;
+		float: left;
+	}
+}
+
+/* ////////////////////////////////////////////////////////////// */
+/* header and nav */
+.navbar-inverse {
+	background: #000;
+}
+
+header nav div.container .navbar-header a.navbar-brand {
+	background: url("../img/header_logo.jpg") no-repeat scroll 0px center
+		transparent;
+	display: block;
+	width: 125px;
+	float: left;
+	margin-top: 8px;
+	margin-left: -25px;
+}
+
+.navbar-collapse.collapse {
+	padding-bottom: 10px;
+}
+
+.navbar-collapse .main-nav>li>a {
+	padding-top: 22px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.navbar-nav>li>a {
+	padding-bottom: 0;
+}
+
+.navbar-nav>li>a.active {
+	color: white;
+	background-color: transparent;
+}
+
+/* .navbar-form { */
+/* 	margin-left: 50px; */
+/* 	padding-bottom: 0px; */
+/* 	padding-top: 0px; */
+/* } */
+.navbar-nav>li {
+	margin-left: 15px;
+}
+
+.navbar-nav>li>img {
+	margin-top: 12px;
+}
+
+.navbar-nav>li>.dropdown-menu::before {
+	content: '';
+	/* display: inline-block; */
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #CCC;
+	position: absolute;
+	top: -7px;
+	right: 29px;
+}
+
+.navbar-nav>li>.dropdown-menu::after {
+	content: '';
+	/* display: inline-block; */
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid white;
+	position: absolute;
+	top: -6px;
+	right: 29px;
+}
+
+.my-account {
+	right: 15px;
+	width: 290px;
+}
+
+#loginUserInfoLayout .clearfix .col-sm-12 {
+	text-align: center;
+}
+
+#loginUserInfoLayout .clearfix .btn-primary {
+	width: 260px;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-top: 20px;
+}
+
+#loginUserInfoLayout .clearfix .btn-logout {
+	width: 90px;
+	background: #f86866;
+	bottom: 0px;
+	margin-top: 18px;
+	color: white;
+}
+
+#loginUserInfoLayout .clearfix img {
+	width: 92px;
+	height: 92px;
+}
+
+#loginUserInfoLayout .clearfix i {
+	font-size: 92px;
+}
+
+#loginUserInfoLayout .clearfix #userIcon {
+	margin-left: 25px;
+	margin-right: -25px;
+}
+
+#loginUserInfoLayout .clearfix #userName {
+	margin-left: -15px;
+}
+
+#loginUserInfoLayout #userPurchase {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+#loginUserInfoLayout .clearfix #userPurchaseNum {
+	text-align: left;
+	margin-left: -10px;
+}
+
+#loginUserInfoLayout .user-info-middle {
+	border-left: 1px solid #DDDDDD;
+	border-right: 1px solid #DDDDDD;
+}
+
+#loginUserInfoLayout .basic-info {
+	padding-top: 24px;
+	margin-bottom: 20px;
+}
+
+#loginUserInfoLayout .basic-info col-sm-6:last-child {
+	height: 92px;
+}
+
+#loginUserInfoLayout .account-btn {
+	padding-bottom: 20px;
+}
+
+.main-nav-account-name {
+	font-size: 22px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+/* ////////////////////////////////////////////////////////////// */
+/* footer */
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background: #000;
+	color: #2c69b5;
+	text-align: left;
+}
+
+footer a {
+	color: #fff;
+}
+
+footer a:hover {
+	color: #10A0D5;
+}
+
+footer h5 {
+	color: #fff;
+}
+
+footer-list {
+	font-size: 12px;
+	height: auto;
+	padding: 20px 0 20px 0;
+}
+
+footer-bottom ul {
+	font-size: 12px;
+	padding: 20px 0 20px 0;
+	border-top: 1px solid #9B9B9B;
+	list-style: none outside none;
+}
+
+footer-bottom ul li {
+	float: left;
+	padding: 4px 20px;
+}
+
+#footer-bottom .icp {
+	color: #696969;
+	text-align: center;
+	height: 30px;
+}
+/* ///////////////////////////////////////////////////////////////// */
+/* login modal */
+.modal-dialog {
+	margin: 300px auto;
+}
+
+.modal-header {
+	border-bottom: 0;
+}
+
+.modal-footer {
+	border-top: 0;
+}
+
+.modal-content {
+	height: auto;
+	width: 370px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 0;
+}
+
+.login-list-style {
+	list-style: none;
+	padding: 40px 20px 40px;
+}
+
+.login-list-af::after {
+	clear: both;
+	content: '.';
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.close {
+	filter: alpha(opacity = 100);
+	opacity: 1;
+}
+
+.close:hover, .close:focus {
+	filter: alpha(opacity = 100);
+	opacity: 1;
+}
+
+/* ///////////////////////////////////////////////////////////////////// */
+/* my cart*/
+.mycart-drop {
+	width: 290px;
+	font-size: 15px;
+}
+
+.mycart-drop li {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.mycart-drop #mycart_loading {
+	height: 50px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.mycart-drop #mycart_nocontent {
+	height: 50px;
+	padding-top: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.mycart-drop #mycart_content {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.mycart-drop #mycart_content #mycartcout {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.mycart-drop #mycart_content div {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.mycart-drop #mycart_content #mycartlist::after {
+	clear: both;
+	content: '.';
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+.mycart-drop #mycart_content #mycartlist .album-track-block {
+	width: 230px;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+
+.mycart-drop #mycart_content #mycartlist .trash-block {
+	float: right;
+	display: inline-block;
+	padding-right: 5px;
+}
+
+.mycart-drop #mycart_content #mycartlist .trash-block button {
+	color: black;
+}
+
+.mycart-drop .album-track-block span {
+	display: block;
+	width: 230px;
+	font-size: 12px;
+	color: #b7b7b7;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mycart-drop #mycart_content .divider {
+	height: 1px;
+	color: #b7b7b7;
+	padding-bottom: 0;
+	padding-top: 0;
+}
+
+/* ///////////////////////////////////////////////////////////////////// */
+/* font for all page */
+.titleFont {
+	font-family: Arial, Simhei;
+	color: #000000;
+	font-size: 18px;
+	color: #000000;
+}
+
+.textFont-black {
+	font-family: Arial, Simhei;
+	color: #000000;
+	font-size: 16px;
+}
+
+.textFont-black-12 {
+	font-family: Arial, Simhei;
+	color: #000000;
+	font-size: 12px;
+}
+
+.textFont-blue {
+	font-family: Arial, Simhei;
+	color: #008dd2;
+	font-size: 16px;
+}
+
+.textFont-gray {
+	font-family: Arial, Simhei;
+	color: #cccccc;
+	font-size: 16px;
+}
+
+.annotationFont {
+	font-family: Arial, Simhei;
+	color: #c0c0c0;
+	font-size: 14px;
+}
+
+.annotationFont-yellow {
+	font-family: Arial, Simhei;
+	color: #f48143;
+	font-size: 14px;
+}
+
+.btn-blue {
+	background-color: #008cd5;
+	border: 1px solid #c2c2c2;
+	color: white;
+}
+
+.btn-blue:HOVER {
+	background-color: #0383C7;
+	color: white;
+}
+
+.btn-red {
+	background-color: #e2302a;
+	color: white;
+}
+
+.btn-red:HOVER {
+	background-color: #D52B24;
+	color: white;
+}
+
+.btn-gray {
+	background-color: #f9f9f9;
+	border: 1px solid #c2c2c2;
+}
+
+.btn-gray:HOVER {
+	background-color: #EFEFEF;
+	border: 1px solid #c2c2c2;
+}
+
+/* ///////////////////////////////////////////////////////////////////// */
+/* define square corner button for all page */
+.btn {
+	border-Radius: 0px;
+}
+
+/** /////////////////////////////////////////////////////////////////// */
+/* define background color for album track list  */
+.track-item:nth-child(odd) {
+	background-color: #ffffff;
+}
+
+.track-item:nth-child(even) {
+	background-color: #fafafa;
+}
+
+.panel {
+	border: 0px;
+}
+
+.panel-warning>.panel-heading+.panel-collapse .panel-body {
+	border-top-color: #e5e5e5;
+}
+
+.panel-group .panel-heading+.panel-collapse .panel-body {
+	border-top: 1px solid #e5e5e5;
+}
+
+.headertext {
+	padding-top: 22px;
+	padding-left: 15px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.row-fluid {
+	width: 100%;
+	height: 100%;
+	display:table;
+}
+
+.row-fluid:after {
+	display: table;
+	content: "";
+	clear: both;
+}
+
+.sidebar-nav {
+	with: 220px;
+	margin-left: 20px;
+}
+
+.span3 {
+	width: 23.4%;
+	float: left;
+}
+
+.span9 {
+	padding-left : 20px;
+	padding-right:20px;
+	width: 74.46%;
+	margin-left:15px;
+	float:left;
+}
+
+.bodyContainer {
+	width:1350px;
+}

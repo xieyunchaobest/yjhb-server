@@ -1,0 +1,333 @@
+/* ////////////////////////////////////////////////////////////// */
+/* Main Carousel */
+.carousel-control {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 30%;
+	float: none;
+}
+
+.carousel-control.left {
+	background: url(../img/btn-left.png)
+		no-repeat scroll 0% 0% transparent;
+	left: 60px;
+}
+
+.carousel-control.right {
+	background: url(../img/btn-right.png)
+		no-repeat scroll 0% 0% transparent;
+	right: 60px;
+}
+
+.carousel-control.right:hover {
+	background: url(../img/btn-right-on.png)
+		no-repeat scroll 0% 0% transparent;
+}
+
+.carousel-control.left:hover {
+	background: url(../img/btn-left-on.png)
+		no-repeat scroll 0% 0% transparent;
+}
+
+.carousel-control.right.disabled {
+	background: url(../img/btn-right-disable.png)
+		no-repeat scroll 0% 0% transparent;
+}
+
+.carousel-control.left.disabled {
+	background: url(../img/btn-left-disable.png)
+		no-repeat scroll 0% 0% transparent;
+}
+
+.carousel-indicators {
+	position: absolute;
+	height: 30px;
+	bottom: 0px;
+	width: 100%;
+	margin-left: 0%;
+	margin-bottom: 0%;
+	left: 0px;
+	right: 0px;
+	text-align: center;
+	background: url('http://www.sonystyle.com.cn/images/kv_bar_bg.png')
+		repeat-x scroll 0% 0% transparent;
+}
+
+.carousel-indicators li {
+	background-color: #008DD2;
+	height: 3px;
+	width: 80px;
+	border: 0px;
+}
+
+.carousel-indicators .active {
+	background-color: #FFF;
+	height: 3px;
+	width: 80px;
+	border: 0px;
+}
+
+/* ////////////////////////////////////////////////////////////// */
+/* Album gallery. for templates/components/albumcard.html */
+.albumGallery {
+	height: auto;
+	position: relative;
+	background: #fff;
+	padding-bottom: 10px;
+}
+
+.albumGallery header {
+	height: auto;
+	margin-bottom: 322px;
+	position: relative;
+	margin: 20px auto 20px auto;
+	z-index: 1;
+}
+
+.albumGallery header h3 {
+	border-left: 8px solid #54a6dd;
+	padding-left: 12px;
+	color: #3a3a3a;
+	display: inline-block;
+    height: 32px;
+    font-size: 28px;
+    font-family: Simhei;
+    margin-bottom: -10px;
+}
+
+.albumGallery header a {
+	color: #3a3a3a;
+	display: inline-block;
+    cursor: pointer;
+}
+
+.albumGallery .thumbnail {
+	padding: 0px;
+	border-width: 0px;
+	-moz-box-shadow:none;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+
+.albumGallery .thumbnail h4 {
+	width:99%;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+	margin-bottom: 5px;
+}
+
+.albumGallery .thumbnail a>img {
+	height: 176px;
+}
+
+.albumGallery .thumbnail .caption{
+	padding: 8px 4px 4px 4px;
+	margin-left: 1px;
+}
+
+.albumGallery .thumbnail .caption div{
+	margin-top: 6px;
+}
+
+.albumGallery header .left {
+	right: 50px;
+    left: auto;
+}
+
+.albumGallery header .right {
+    right:0px;
+}
+
+.ordercount{
+	/*width: 30px;*/
+	height: 20px;
+	text-align: right;
+	/*background: url(../img/smw_Cart_Download-count_icn.png) no-repeat 2px 4px;*/
+}
+
+.newtrackcount{
+	width: 55px;
+	height: 20px;
+	text-align: right;
+	background: url(../img/smw_HiRes-Popular_NewRelease_icn.png) no-repeat 0px 4px;
+}
+
+
+/* ////////////////////////////////////////////////////////////// */
+/* multi-line track list, for best sales music */
+.multilineTracks {
+	height: auto;
+	position: relative;
+	background: #fff;
+	padding-bottom: 10px;
+	border-bottom:solid 1px #F0F0F0;
+}
+
+.multilineTracks header {
+	height: auto;
+	margin-bottom: 322px;
+	position: relative;
+	margin: 20px auto 20px auto;
+	z-index: 1;
+}
+
+.multilineTracks header h3 {
+	border-left: 8px solid #54a6dd;
+	padding-left: 9px;
+	color: #3a3a3a;
+	display: inline-block;
+	height: 32px;
+	font-size: 28px;
+	font-family: Simhei;
+	margin-bottom:-10px;
+}
+
+.multilineTracks .item {
+	margin-bottom: -1px;
+	margin-left: -15px;
+	margin-right: 15px;
+	/*border-bottom:solid 1px #F0F0F0;
+	border-top:solid 1px #F0F0F0;*/
+	border-left:solid 1px #F0F0F0;
+}
+
+.multilineTracks .item .col-md-6 {
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+
+.multilineTracks .item .name {
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	border-top:solid 1px #F0F0F0;
+	color:#34322e;
+}
+
+.multilineTracks .item .artistname {
+	
+}
+
+.multilineTracks .item .purchasecount {
+	text-align:right;
+	border-top:solid 1px #F0F0F0;
+	/*background:url(../img/smw_Cart_Download-count_icn.png) no-repeat  0px 13px;*/
+}
+
+.multilineTracks .item .price {
+	border-top:solid 1px #F0F0F0;
+}
+
+.multilineTracks header .left {
+	right: 50px;
+    left: auto;
+}
+
+.multilineTracks header .right {
+    right:0px;
+}
+
+/* ////////////////////////////////////////////////////////////// */
+/* login platform selector, for both header and purchase  */
+.navbar-nav>li>.dropdown-menu {
+	margin-top: 10px;
+}
+
+.loginPlatformSelector {
+	padding-bottom: 10px;
+}
+
+.loginPlatformSelector.col-sm-6 {
+	text-align: center;
+}
+
+.loginPlatformSelectorHeader {
+	padding: 15px 10px 20px 10px;
+	height: 60px;
+	width: 290px;
+}
+
+.loginPlatformSelectorHeader-divider {
+	width: 100%;
+	height: 1px;
+	margin-top: 15px;
+	background-color: #e5e5e5;
+	vertical-align: middle;
+}
+
+.loginPlatformSelectorHeader-content {
+	position: absolute;
+	margin-top: -10px;
+	background-color: white;
+	width: 60%;
+	height: 30px;
+	left: 20%;
+	text-align: center;
+}
+
+.loginPlatformSelector-popup {
+	float: left;
+	float: left;
+	width: 162px;
+	height: 114px;
+	border-left: 1px dotted #ccc;
+}
+
+.login-fist-item {
+	border: none;
+}
+
+.loginPlatformSelector-popup .oauth-icon {
+	display: block;
+    margin: 7px auto;
+}
+
+.loginPlatformSelector-popup .login-oauth-name {
+	display: block;
+	margin-top: 15px;
+	text-align: center;
+	margin: 7px auto;
+}
+
+/* ////////////////////////////////////////////////////////////// */
+/* similar albums  */
+.similarAlbums {
+	margin-top: 35px;
+	margin-bottom: 35px;
+}
+
+.similarAlbums .albumIcon {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 15px;
+	height: 90px;
+	width: 90px;
+	padding-left: 0px;
+	padding-right: 0px;
+	height: 90px;
+}
+
+.similarAlbums .albumIcon .smallIcon {
+	width: 100%;
+	height: 100%;
+}
+
+.similarAlbums .albumInfo {
+	padding-top: 10px;
+	padding-left: 15px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.similarAlbums .albumInfo .albumArt {
+	color: #cccccc;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.similarAlbums .list-unstyled>li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

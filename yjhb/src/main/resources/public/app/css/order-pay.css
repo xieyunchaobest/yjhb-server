@@ -1,0 +1,228 @@
+/*////////////////////////////////////////////////////////*/
+/** for confirm page*/
+
+.order-pay-process-header {
+	padding-top: 80px;
+	padding-bottom: 95px;
+	padding-left: auto;
+	padding-right: auto;
+}
+
+.order-pay-process-header .oder-pay-process {
+	margin-top: 10px;
+}
+
+.order-pay-process-header .oder-pay-process .current-process-txt {
+	font-weight: bold;
+	color: #32CD32;
+}
+
+.order-pay-process-header .oder-pay-process .process-txt {
+	font-weight: bold;
+	color: #d8d8d8;
+}
+
+.order-pay-process-header .oder-pay-process #process_confirm {
+	padding-left: 88px;
+}
+
+.order-pay-process-header .oder-pay-process #process_wait {
+	padding-left: 75px;
+}
+
+.order-pay-process-header .oder-pay-process #process-download {
+    padding-left: 60px;
+}
+
+.order-pay-process-header .process_success_title {
+	font-size: 18px;
+	font-weight: bold;
+	margin-left: 65px;
+	margin-right: 10px;
+}
+
+.confirm header {
+    height: auto;
+    position: relative;
+}
+
+.confirm header h3 {
+	margin-bottom: 30px;
+    border-left: 8px solid #32CD32;
+    padding-left: 9px;
+    color: #3a3a3a;
+    display: inline-block;
+    cursor: pointer;
+    height: 32px;
+    font-size: 28px;
+    font-family: Simhei;
+}
+
+.confirm .cart-function-block {
+	height: 70px;
+	padding-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.confirm .cart-function-block-top {
+    border-top: 1px solid #cccccc;
+    border-bottom: 2px solid #cccccc;
+}
+
+.confirm .cart-function-block-bottom {
+    border-top: 2px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+
+.panel-group .panel .panel-heading .panel-title {
+	overflow:hidden;
+}
+
+.confirm .cart-function-block #totaltrackscount {
+	padding-left: 10px;
+	padding-top: 15px;
+	float: left;
+}
+
+.confirm .cart-function-block .button-order-pay {
+	height: 48px;
+	width: 142px;
+	color: #ffffff;
+	background-color: #e2302a;
+	float: right;
+	text-align: center;
+	padding-top: 12px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.confirm .cart-function-block .order-total-price-title {
+	float: right;
+	padding-top: 15px;
+}
+
+.confirm .cart-function-block .order-total-price {
+	float: right;
+	padding-right: 30px;
+	padding-top: 15px;
+	color: red;
+}
+
+#order-modal-container .modal-dialog .modal-content {
+	width: 500px;
+}
+
+#order-modal-container .modal-dialog .modal-content .modal-body {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+#order-modal-container .modal-dialog .modal-content .modal-footer {
+    border-top: 0;
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#order-modal-container .modal-dialog .modal-content .modal-footer .btn-order-confirm {
+	height: 34px;
+    width: 120px;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+#order-modal-container .modal-dialog .modal-content .dialog-header .dialog-close {
+	font-size: 30px;
+	margin-right: 20px;
+}
+
+#order-modal-container .modal-dialog .modal-content .dialog-header .dialog-img {
+	left: 50%;
+	margin-left: 220px;
+	height: 60px;
+	width: 60px;
+	background-color: #fbc600;
+	color: #ffffff;
+}
+
+#order-modal-container .modal-dialog .modal-content .dialog-header .dialog-warning {
+	margin-top: 14px;
+	font-size: 60px;
+	text-align: center;
+}
+
+#order-modal-container .modal-dialog .modal-content .modal-body h3 {
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+#order-modal-container .modal-dialog .modal-content .modal-body h4 {
+    text-align: center;
+    color: #b0b0b0;
+}
+
+.ailipayicon {
+	height: 43px;
+	width: 104px;
+}
+
+.panel-title .album-col-price{
+    font-size: 14px;
+}
+
+.panel-title .album-col-format {
+	padding-top: 20px;
+}
+
+.panel-title .album-price {
+    text-decoration: line-through;
+}
+
+.panel-title .album-discount-price {
+    font-size: 25px;
+    color: #428bca;;
+}
+
+.panel-body .order-track-col-name {
+	padding-left: 100px;
+	white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow:ellipsis;
+}
+
+.paymentblock {
+	margin-top: 40px;
+	margin-bottom: 170px;
+	padding-left: 10px;
+}
+
+.order-pay-result-block {
+	padding-bottom: 150px;
+	border-bottom: 1px solid #c2c2c2;
+}
+
+.order-pay-result-block .btn-pay-result-download {
+	padding-top: 25px;
+	font-size: 18px;
+	height: 150px;
+	line-height: 35px;
+}
+
+.order-pay-result-block .btn-pay-result-download .pay-result-total-size {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.order-pay-result-block .btn-pay-result-continue {
+	color: black;
+	font-size: 18px;
+    height: 150px;
+    line-height: 130px;
+}
+
+.order-pay-result-mymusic {
+	margin-top: 26px;
+	padding-bottom: 150px;
+}

@@ -1,0 +1,241 @@
+/*/////////////////////////////////////////////////////*/
+/* for album page*/
+.albumSect {
+	height: auto;
+	margin-top: 35px;
+}
+
+.albumSect .albumIconSect {
+	max-width: 320px;
+}
+
+.albumSect .albumIconSect .albumIcon {
+	padding: 1px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.albumSect .albumIconSect .hiResIcon {
+	top: 0px;
+	left:15px;
+	padding: 1px;
+	margin: 0px;
+	z-index: 2;
+	position: absolute;
+	
+}
+.albumSect .albumInfoSect {
+	padding-left: 10px;
+}
+
+.albumSect .albumInfoSect .albumNameH2{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	margin-top: 0px;
+	font-weight: bold;
+}
+
+
+.albumSect .albumInfoSect .albumArtist {
+	margin-top: 15px;
+	color: #cccccc;
+}
+
+.albumSect .albumInfoSect .albumFormat {
+	margin-top: 15px;
+}
+
+.albumSect .albumInfoSect .albumFormat img{
+	width: 24px;
+}
+
+.albumSect .albumInfoSect .albumPrice {
+	margin-top: 28px;
+	font-size: 22px;
+}
+
+.albumSect .albumInfoSect .albumAddCart {
+	width: 45%;
+	height: auto;
+}
+
+.albumSect .albumInfoSect .albumBuyBtn {
+	width: 45%;
+	height: auto;
+	margin-left: 5px;
+}
+
+.albumSect .albumInfoSect .albumBuy {
+	margin-top: 15px;
+}
+
+.albumDescription {
+	margin-top: 60px;
+	color: #b4b4b4;
+}
+
+.tracks {
+	margin-top: 40px;
+}
+
+.tracks .tracksAddCart {
+	height: 34px;
+	width: 114px;
+	margin-right: 12px;
+	float: right;
+}
+
+.tracks .tracksBuy {
+	height: 34px;
+	width: 158px;
+	margin-right: 15px;
+	float: right;
+}
+
+.tracks #checkBoxAll {
+	float: left;
+}
+
+.tracks #checkBoxAllOther {
+float: left;
+}
+
+.tracks .checkBoxAllLayout {
+	margin-left: 22px;
+	float: left;
+	margin-top: 6px;
+}
+
+.tracks .checkBoxAllText {
+	margin-left: 5px;
+	float: left;
+}
+
+.tracks .tracksDivider {
+	margin-top: 12px;
+	margin-bottom: 5px;
+	height: 2px;
+	background-color: #ccc;
+}
+
+.tracks .trackName {
+	height: auto;
+	width: 50px;
+}
+
+.tracks .thTrackName {
+	max-width: 300px;
+	vertical-align: middle;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.tracks .newTrack {
+	width: 28px;
+	height: 14px;
+	padding: 0px;
+	background: url(../img/smw_HiRes-Popular_NewRelease_icn.png) no-repeat
+		0px 0px;
+}
+
+.tracks .newTrackPadding {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.tracks .trackDuration {
+	height: auto;
+	/* float: right; */
+}
+
+.tracks .thCenter {
+	text-align: center;
+}
+
+.tracks .thContent {
+	font-weight: normal;
+	vertical-align: middle;
+}
+
+.tracks .thContentBlue {
+	color: #3c9eda;
+}
+
+.tracks .trackAudition {
+	height: 30px;
+	width: 45px;
+	margin-right: 10px;
+}
+
+.tracks .trackPrice {
+	height: 30px;
+	width: 60px;
+}
+
+.tracks .table-striped {
+	border-bottom: solid 1px #ddd;
+}
+
+.evaluation {
+	height: auto;
+	margin-top: 85px;
+	margin-bottom: 85px;
+}
+
+h3 {
+	border-left: 4px solid #008cd5;
+	padding-left: 9px;
+	margin-bottom: 30px;
+}
+
+.evaluation .iSay {
+	height: auto;
+	margin-top: 35px;
+}
+
+.evaluation .textbox {
+	height: 135px;
+	margin-top: 10px;
+}
+
+.evaluation .wordNum {
+	height: auto;
+	margin-right: 35px;
+	float: right;
+	margin-top: 15px;
+}
+
+.evaluation .submitBtn {
+	height: 34px;
+	width: 90px;
+	float: right;
+	margin-top: 8px;
+}
+
+.rightSide {
+	height: auto;
+	margin-top: 40px;
+	padding-left: 75px;
+	padding-right: 0px;
+}
+
+.rightSide .dl-horizontal dt {
+	width: 60px;
+	text-align: left;
+	margin-bottom: 24px;
+	font-size: 16px;
+}
+
+.rightSide .dl-horizontal dd {
+	margin-left: 0px;
+	margin-bottom: 24px;
+	font-size: 16px;
+}
+
+.rightSide .albumMoreInfo {
+	padding-bottom: 20px;
+	color: #cccccc;
+}

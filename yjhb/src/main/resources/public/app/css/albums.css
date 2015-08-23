@@ -1,0 +1,103 @@
+.allAlbums {
+	height: auto;
+	position: relative;
+	padding-top: 45px;
+	padding-bottom: 128px;
+}
+
+.allAlbums header {
+	height: auto;
+	position: relative;
+	z-index: 1;
+	margin-bottom: 30px;
+}
+
+.allAlbums header .orderBy {
+	float: right;
+	height: 56px;
+	vertical-align: middle;
+	padding-top: 8px;
+}
+
+.allAlbums header h3 {
+	border-left: 4px solid #008cd5;
+	padding-left: 10px;
+	color: #3a3a3a;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 24px;
+	font-family: Arial;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.allAlbums form select {
+	margin-left: 15px;
+	margin-top: -7px;
+}
+
+.allAlbums header li {
+	height: 40px;
+	width: 90px;
+	vertical-align: middle;
+	border-left: 1px solid #000;
+}
+
+.allAlbums header li>a {
+	color: #000000;
+}
+
+.allAlbums header li>a.active {
+	background-color: black;
+	border-radius: 0px;
+	color: #fff;
+}
+
+.allAlbums header li>a.disable {
+	cursor: not-allowed;
+}
+
+.allAlbums header li>a:hover {
+	background-color: #999;
+	color: #fff;
+	border-radius: 0px;
+}
+
+.allAlbums header li>a.disable:hover {
+	background-color: black !important;
+}
+
+.allAlbums .page {
+	display: block;
+	height: 50px;
+	border: solid 1px #e5e5e5;
+	margin-top: 50px;
+}
+
+.allAlbums .page .pagination {
+	float: right;
+	margin: 9px 0;
+}
+
+.allAlbums .page .pagination .pre {
+	margin-right: 28px;
+}
+
+.allAlbums .page .pagination .nex {
+	margin-left: 28px;
+	margin-right: 30px;
+}
+
+.allAlbums .page .pagination>li>a {
+	border: 0px;
+	margin-left: 12px;
+	color: #000000;
+}
+
+.allAlbums .page .pagination>.disabled>a {
+	color: #999;
+}
+
+.allAlbums .page .pagination>.active>a {
+	cursor: not-allowed;
+}

@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+    <head>
+	<title>funcMenu</title>
+	<link rel="stylesheet" th:href="@{/app/css/zTreeStyle.css}" />
+	<script th:src="@{/app/js/vendor/jquery.ztree.core-3.5.min.js}"></script>
+	
+	<script type="text/javascript">
+		
+	</script>
+
+
+</head>
+
+<body>
+    <div th:fragment="copy" class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class=" well sidebar-nav">
+                    <ul id="funcmenu" class="ztree"></ul>
+                </div>
+            </div>
+            <script th:inline="javascript">
+            /*<![CDATA[*/
+                   var setting = {};
+        		$(document).ready(function() {
+        			var val = $("#hkfuncMenu").val();
+        			var zNodes = eval('(' + val + ')');
+        			$.fn.zTree.init($("#funcmenu"), setting, zNodes);
+        		});
+	        function loadPage(pageName) {
+            	$("#subPage").attr("src", pageName);
+            	
+	        }
+	        /*]]>*/
+    </script>
+            <div class="span9">
+                <div class="well" id="queryContainer">
+                <input type="hidden" id="hkfuncMenu" th:value="${funcMenuList}" />
+                <!-- Replace with relative content -->
+                    <iframe id="subPage" name="subPage" width="100%" height="800px"  frameborder="no" border="0">
+                    </iframe>
+                <!-- Replace with relative content -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
