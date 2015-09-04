@@ -18,24 +18,42 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.xyc.proj.utility.CustomDateSerializer;
 
 @Entity
-@Table(name = "T_USER")
+@Table(name = "T_STORE")
 public class Store {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column(name = "MOBILE_NO")
-	private String mobileNo;
+	@Column(name = "STORE_NAME")
+	private String storeName;
 	
-	@Column(name = "AUTH_CODE")
-	private String authCode;
+	@Column(name = "ADDRESS")
+	private String address; 
 	
 	
+	@Column(name = "LONGITUDE")
+	private Double longitude;
+	
+	@Column(name = "LATITUDE")
+	private Double latitude;
+	
+	@Column(name = "IS_OPEN")
+	private String isOpen;
+	
+	@Column(name = "STS")
+	private String sts;
+	
+	
+	 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATE_TIME") 
-	private Date createdTime;
+	private Date createTime;
 	 
+	@Column(name = "BUS_ROUTE")
+	private String busRoute;
+	
+	
 
 	public Store() {
 	}
@@ -51,35 +69,87 @@ public class Store {
 	}
 
 
-	public String getMobileNo() {
-		return mobileNo;
+	public String getStoreName() {
+		return storeName;
 	}
 
 
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
 	}
 
 
-	public String getAuthCode() {
-		return authCode;
+	public String getAddress() {
+		return address;
 	}
 
 
-	public void setAuthCode(String authCode) {
-		this.authCode = authCode;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 
-	public Date getCreatedTime() {
-		return createdTime;
+	public Double getLongitude() {
+		return longitude;
 	}
 
 
-	public void setCreatedTime(Date createdTime) {
-		this.createdTime = createdTime;
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public String getSts() {
+		return sts;
+	}
+
+
+	public void setSts(String sts) {
+		this.sts = sts;
+	}
+
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+
+	public String getBusRoute() {
+		return busRoute;
+	}
+
+
+	public void setBusRoute(String busRoute) {
+		this.busRoute = busRoute;
+	}
+
+
+	public String getIsOpen() {
+		return isOpen;
+	}
+
+
+	public void setIsOpen(String isOpen) {
+		this.isOpen = isOpen;
+	}
+
+
+ 
  
 
  

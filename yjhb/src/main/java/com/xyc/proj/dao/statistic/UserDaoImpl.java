@@ -42,11 +42,7 @@ public class UserDaoImpl<T extends com.xyc.proj.entity.SysUser> extends MyBatisB
 //		super.save(user);
 //	}
 //
-//	@Override
-//	public void delete(com.sonychina.backend.entity.statistic.User obj) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+ 
 	
 	public Long getCount(){
 		return super.getCount(new HashMap());

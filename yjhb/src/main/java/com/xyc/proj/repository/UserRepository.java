@@ -11,6 +11,6 @@ import com.xyc.proj.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	@Query("select u from User u where u.mobileNo = ?1 order by createdTime desc") 
-	List findUserByMobile(String mobileNo);
+	@Query("select u from User u where u.mobileNo = ?1 and authCode=?2 order by createdTime desc") 
+	List findUserByMobileAndAuthCode(String mobileNo,String authCode);
 }

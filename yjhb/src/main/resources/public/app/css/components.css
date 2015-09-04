@@ -40,19 +40,7 @@
 		no-repeat scroll 0% 0% transparent;
 }
 
-.carousel-indicators {
-	position: absolute;
-	height: 30px;
-	bottom: 0px;
-	width: 100%;
-	margin-left: 0%;
-	margin-bottom: 0%;
-	left: 0px;
-	right: 0px;
-	text-align: center;
-	background: url('http://www.sonystyle.com.cn/images/kv_bar_bg.png')
-		repeat-x scroll 0% 0% transparent;
-}
+ 
 
 .carousel-indicators li {
 	background-color: #008DD2;

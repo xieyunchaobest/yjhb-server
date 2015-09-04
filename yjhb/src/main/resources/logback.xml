@@ -9,24 +9,8 @@
 		</encoder>
 	</appender>
 
-	<appender name="pv"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/Users/xieyunchao/Workspaces/ws-sts/pv.log.%d{yyyy-MM-dd}
-			</fileNamePattern>
-		</rollingPolicy>
-		<encoder>
-			<pattern>Time=%d{yyyy-MM-dd HH:mm:ss},%msg%n</pattern>
-		</encoder>
-		<append>true</append>
-		<prudent>false</prudent>
-	</appender>
  
  
-
-	<logger name="pvtype" level="INFO">
-		<appender-ref ref="pv" />
-	</logger>
 	 
 
 	<logger name="org.mybatis">

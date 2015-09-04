@@ -1,7 +1,9 @@
 package com.xyc.proj.utility;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateUtil {
 	
@@ -26,5 +28,36 @@ public class DateUtil {
 				.getTime());
 		return today;
 	}
+	
+	/**
+	 * 按指定的格式将日期对象转换为字符串
+	 * 
+	 * @param date
+	 * @param format
+	 * @return
+	 */
+	public static String to_char(Date date, String format) {
+		if (date == null)
+			return null;
+		DateFormat df = new SimpleDateFormat(format);
+		return df.format(date);
+	}
+	
+
+	/**
+	 * 日期（精确到日）转字符串
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static String date2Str(Date date) {
+		String str = "";
+		if (null != date) {
+			str = DateUtil.to_char(date, "yyyy-MM-dd");
+		}
+		return str;
+	}
+	
+	
 
 }

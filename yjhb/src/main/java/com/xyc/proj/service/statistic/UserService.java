@@ -12,7 +12,6 @@ import com.xyc.proj.utility.PageView;
 public interface UserService {
 //	public User getUser(long id);
 //	
-//	public void save(String sonySelectId);
 	
 	public Long getCount();
 	

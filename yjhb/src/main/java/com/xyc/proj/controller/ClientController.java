@@ -3,10 +3,17 @@
  */
 package com.xyc.proj.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloopen.rest.sdk.CCPRestSDK;
+import com.xyc.proj.apliay.AlipayNotify;
+import com.xyc.proj.entity.Order;
 import com.xyc.proj.entity.User;
+import com.xyc.proj.entity.Version;
 import com.xyc.proj.service.ClientService;
 import com.xyc.proj.utility.Properties;
 import com.xyc.proj.utility.Result;
@@ -59,11 +69,13 @@ public class ClientController {
 			}catch(Exception e) {
 				e.printStackTrace();
 				res.resultCode=0;
+				res.result="获取校验码失败！";
 			}
 			
 		}else {
 			res.resultCode=0;
-		}
+			res.result="获取校验码失败！";
+		} 
 		return res;
 	}
 
@@ -73,16 +85,251 @@ public class ClientController {
 	        Model model,HttpSession Session,HttpServletRequest request) {
 		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
 		String mobileNo=StringUtil.getStringInJson(json,"mobileNo");
+		String authCode=StringUtil.getStringInJson(json,"authCode");
 		mobileNo="18611298927";
 		Result res=new Result();
-		List ulist=clientService.getUserListByMobileNo(mobileNo);
+		List ulist=clientService.getUserListByMobileNoAndAuthCode(mobileNo,authCode);
 		if(ulist!=null && ulist.size()>0) {
 			User u=(User)ulist.get(0);
 			res.result=u;
 		}else {
 			res.resultCode=0;
+			res.result="登录失败，请检查输入！";
 		}
 		
 		return res;
 	}
+	
+	
+	@RequestMapping("/client/getLocalCache")
+	@ResponseBody 
+	public Result getLocalCache( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		Result res=new Result();
+		List storeList=null;
+		Map resMap=new HashMap();
+		List carList=null;
+		try {
+			storeList=clientService.findStoreBySts();
+			//carList=clientService.findCarBySts("A");
+			resMap.put("storeList", storeList);
+			//resMap.put("carList", carList);
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.resultCode=0;
+		}
+		
+		res.result=resMap;
+		return res;
+	}
+	
+	
+	@RequestMapping("/client/getCarsByStore")
+	@ResponseBody 
+	public Result getCarsByStore( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		Result res=new Result();
+		List carList=null;
+		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
+		String storeId=json.getString("storeId");
+		String tradeType=json.getString("tradeType");
+		if("3".equals(tradeType) ||"2".equals(tradeType)) {
+			tradeType="R";
+		}else if("4".equals(tradeType)) {
+			tradeType="B";
+		}
+		try {
+			carList=clientService.findByTradeTypeAndSts(tradeType,"A");
+			res.result=carList;
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.resultCode=0;
+		}
+		
+		return res;
+	}
+	
+	@RequestMapping("/client/getOrderList")
+	@ResponseBody 
+	public Result findOrderByMobleAndState( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
+		String mobileNo=json.getString("mobileNo");
+		Result res=new Result();
+		List orderList=null;
+		List carList=null;
+		try {
+			orderList=clientService.findOrderByMobleAndState(mobileNo, "A");
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.resultCode=0;
+		}
+		res.result=orderList;
+		return res;
+	
+	}
+	
+	
+	@RequestMapping("/client/getStoreStatInfo")
+	@ResponseBody 
+	public Result getStoreStatInfo( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
+		String storeId=json.getString("storeId");
+		Result res=new Result();
+		List orderList=null;
+		List carList=null;
+		try {
+			clientService.updateStoreStatistic(Long.parseLong(storeId));
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.resultCode=0;
+		}
+		res.result=orderList;
+		return res;
+	}
+	
+	@RequestMapping("/client/checkVersion")
+	@ResponseBody 
+	public Result findVersionByPfType( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
+		String pfType=json.getString("pfType");
+		Result res=new Result();
+		try {
+			Version v=clientService.findVersionByPfType(pfType);
+			res.result=v;
+		}catch(Exception e) {
+			e.printStackTrace();
+			res.resultCode=0;
+		}
+		return res;
+	}
+	
+	@RequestMapping("/client/alipayGateway")
+	@ResponseBody 
+	public Result alipayGateway( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		Result res=new Result();
+		StringBuffer sb = new StringBuffer("");
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(ServletInputStream) request.getInputStream(), "UTF-8"));
+			
+			String temp;
+			while ((temp = br.readLine()) != null) {
+				sb.append(temp);
+			}
+			br.close();
+			System.out.println("info================================="+sb);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+ 
+	
+	@RequestMapping("/client/alipayNotify")
+	@ResponseBody 
+	public String alipayNotify( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		//获取支付宝POST过来反馈信息
+		Map<String,String> params = new HashMap<String,String>();
+		Map requestParams = request.getParameterMap();
+		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
+			String name = (String) iter.next();
+			String[] values = (String[]) requestParams.get(name);
+			String valueStr = "";
+			for (int i = 0; i < values.length; i++) {
+				valueStr = (i == values.length - 1) ? valueStr + values[i]
+						: valueStr + values[i] + ",";
+				System.out.println(name+"=="+valueStr);
+			}
+			
+			//乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
+			//valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
+			params.put(name, valueStr);
+		}
+		//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以下仅供参考)//
+		//商户订单号
+		String out_trade_no="";
+		//支付宝交易号
+		String trade_no="" ;
+		//交易状态
+		String trade_status="";
+		try {
+			out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+			trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("out_trade_no:"+out_trade_no);
+		System.out.println("trade_no:"+trade_no);
+		System.out.println("trade_status:"+trade_status);
+
+		//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
+
+		if(AlipayNotify.verify(params)){//验证成功
+			//////////////////////////////////////////////////////////////////////////////////////////
+			//请在这里加上商户的业务逻辑程序代码
+			Order o=new Order();
+			o.setOutTradeNo(out_trade_no);
+			o.setTradeNo(trade_no);
+			clientService.updateOrder(o);
+			System.out.println("verify:success");
+
+			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
+			
+			//判断是否在商户网站中已经做过了这次通知返回的处理
+				//如果没有做过处理，那么执行商户的业务程序
+				//如果有做过处理，那么不执行商户的业务程序
+			 return "success"; //请不要修改或删除
+			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+			//////////////////////////////////////////////////////////////////////////////////////////
+		}else{//验证失败
+			System.out.println("verify:failer");
+			 return "fail"; 
+			//out.println("fail");
+		}
+		
+	}
+	
+	@RequestMapping("/client/createOrder")
+	@ResponseBody 
+	public Result createOrder( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		Result res=new Result();
+		try {
+			Order o=new Order();
+			com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
+			
+			String tradeType=json.getString("tradeType");
+			String outTradeNo=json.getString("out_trade_no");
+			String mobileNo=json.getString("mobileNo");
+			Long carId=json.getLong("carId");
+			Long storeId=json.getLong("storeId");
+			Double totalFee=json.getDouble("totalFee");
+			o.setOutTradeNo(outTradeNo);;
+			o.setMobileNo(mobileNo);;
+			o.setCarId(carId);
+			o.setStoreId(storeId);
+			o.setTotalFee(totalFee);
+			o.setTradeType(tradeType);
+			o.setState("A");
+			clientService.createOrder(o);
+		}catch(Exception e) {
+			res.resultCode=0;
+			res.result="创建订单失败";
+			e.printStackTrace();
+		}
+	
+		return res;
+	}
+	
 }

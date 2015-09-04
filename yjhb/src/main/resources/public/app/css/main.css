@@ -240,32 +240,7 @@ margin-left: 0px;
     top: 40%;
     float: none;
 }
-#myCarousel .carousel-control.left{
-    background: url('http://www.sonystyle.com.cn/images/btn-left.png') no-repeat scroll 0% 0% transparent;
-    left: 60px;
-}
-#myCarousel .carousel-control.right{
-    background: url('http://www.sonystyle.com.cn/images/btn-right.png') no-repeat scroll 0% 0% transparent;
-    right: 60px;
-}
-#myCarousel .carousel-control.right:hover {
-    background: url('http://www.sonystyle.com.cn/images/btn-right-on.png') no-repeat scroll 0% 0% transparent;
-}
-#myCarousel .carousel-control.left:hover {
-    background: url('http://www.sonystyle.com.cn/images/btn-left-on.png') no-repeat scroll 0% 0% transparent;
-}
-.carousel-indicators{
-    position: absolute;
-    height: 30px;
-    bottom: 0px;
-    width: 100%;
-    margin-left: 0%;
-    margin-bottom:0%;
-    left:0px;
-    right:0px;
-    text-align: center;
-    background: url('http://www.sonystyle.com.cn/images/kv_bar_bg.png') repeat-x scroll 0% 0% transparent;
-}
+ 
 #myCarousel .carousel-indicators li{
     background-color: #008DD2;
     height: 3px;

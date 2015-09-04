@@ -29,13 +29,7 @@ public class UserServiceImpl implements UserService{
 //		System.out.println("-----------getUserId:" + id + "[service start]");
 //		return userDao.get(Long.valueOf(id).intValue());
 //	}
-//	
-//	public void save(String sonySelectId){
-//		User user = new User();
-//		user.setSonySelectId(sonySelectId);
-//		userDao.save(user);
-//	}
-	
+ 
 	public Long getCount(){
 		return userDao.getCount();
 	}
@@ -43,18 +37,7 @@ public class UserServiceImpl implements UserService{
 	public PageView getMapList(Map<String, Object> map){
 		return userDao.getPageList(map);
 	}
-	
-//	@Transactional
-//	public void saveTestTransaction(){
-//		AdInfo adInfo = new AdInfo();
-//		adInfo.setName("testdata");
-//		adInfo.setExpiryDate("2015-07-17");
-//		adInfoDao.save(adInfo);
-//		
-//		User user = new User();
-//		user.setSonySelectId("testData7.17");
-//		userDao.save(user);
-//	}
+ 
 	
 	private List getTreeNodeList(List funcNodeList) {
 		List treeList=new ArrayList();

@@ -14,28 +14,38 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.xyc.proj.utility.CustomDateSerializer;
-
 @Entity
-@Table(name = "T_USER")
+@Table(name = "T_ELECTRIC_CAR")
 public class ElectricCar {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	 
 	
-	@Column(name = "MOBILE_NO")
-	private String mobileNo;
+	@Column(name = "MODEL")
+	private String model;  
 	
-	@Column(name = "AUTH_CODE")
-	private String authCode;
+	@Column(name = "TRADE_TYPE")
+	private String tradeType;
+	
+	@Column(name = "KM_COUNT")
+	private Integer kmCount;
+	
+	@Column(name = "PRICE")
+	private Double price;
+	
+	@Column(name = "STS")
+	private String sts;
+	 
+	@Column(name = "IMG_ADDR")
+	private String imgAddr;
+	
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATE_TIME") 
-	private Date createdTime;
-	 
+	private Date createTime;
 
 	public ElectricCar() {
 	}
@@ -51,33 +61,74 @@ public class ElectricCar {
 	}
 
 
-	public String getMobileNo() {
-		return mobileNo;
+	public String getModel() {
+		return model;
 	}
 
 
-	public void setMobileNo(String mobileNo) {
-		this.mobileNo = mobileNo;
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+ 
+
+	public String getTradeType() {
+		return tradeType;
 	}
 
 
-	public String getAuthCode() {
-		return authCode;
+	public void setTradeType(String tradeType) {
+		this.tradeType = tradeType;
 	}
 
 
-	public void setAuthCode(String authCode) {
-		this.authCode = authCode;
+	public Double getPrice() {
+		return price;
 	}
 
 
-	public Date getCreatedTime() {
-		return createdTime;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 
-	public void setCreatedTime(Date createdTime) {
-		this.createdTime = createdTime;
+	public String getSts() {
+		return sts;
+	}
+
+
+	public void setSts(String sts) {
+		this.sts = sts;
+	}
+
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+
+	public Integer getKmCount() {
+		return kmCount;
+	}
+
+
+	public void setKmCount(Integer kmCount) {
+		this.kmCount = kmCount;
+	}
+
+
+	public String getImgAddr() {
+		return imgAddr;
+	}
+
+
+	public void setImgAddr(String imgAddr) {
+		this.imgAddr = imgAddr;
 	}
 
  
