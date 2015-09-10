@@ -42,13 +42,13 @@ public class Store {
 	private String isOpen;
 	
 	@Column(name = "STS")
-	private String sts;
+	private String sts="A";
 	
 	
 	 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATE_TIME") 
-	private Date createTime;
+	private Date createTime=new Date();
 	 
 	@Column(name = "BUS_ROUTE")
 	private String busRoute;

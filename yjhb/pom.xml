@@ -96,6 +96,13 @@
 	<artifactId>spring-boot-configuration-processor</artifactId>
 	<version>1.2.5.RELEASE</version>
 </dependency>
+<dependency>
+            <groupId>aplipay</groupId>
+            <artifactId>aplipay</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/alipay-sdk-java-ALL20150604113758.jar</systemPath>
+        </dependency>
 	</dependencies>
 
 	<properties>

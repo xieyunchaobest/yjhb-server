@@ -108,32 +108,7 @@ public class SystemController {
 		return "system/SysUserList";
 	}
 	
-	@RequestMapping(value= {"/","/login.html"})
-	public String showLogin( Model model,@ModelAttribute SysUser user,HttpServletRequest request) {
-		return "login";
-	}
-	
-	@RequestMapping(value="/login",method = {RequestMethod.POST})
-	public String login(Model model,@ModelAttribute SysUser user,HttpServletRequest request) {
-		String pageLogin="/login.html";
-		String pageMain="/manage?fromMenu=manage";
-		String page="";
-		try {
-			SysUser u=systemService.login(user);
-			if(u==null) {
-				model.addAttribute("error", "User Name or Password Error!");
-				page=pageLogin;
-			}else {
-				page=pageMain;
-				model.addAttribute("user", u);
-			}
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			page=pageLogin;
-		}
-		return "forward:"+page;
-	}
-	
+ 
 	@RequestMapping(value ="/userMgr/delete",method = {RequestMethod.POST})
 	public String deleteUser( Model model,
 			@RequestParam(value = "userId", required = false) Long userId,

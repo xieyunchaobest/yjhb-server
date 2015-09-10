@@ -16,4 +16,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 	List findByMobileAndSts(@Param("mobileNo")  String mobileNo,@Param("sts")  String sts);
 	 
 	Order findByOutTradeNo(String outTradeNo);
+	
+ 
 }

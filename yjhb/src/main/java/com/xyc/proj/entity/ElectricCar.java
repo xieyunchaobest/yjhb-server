@@ -36,7 +36,7 @@ public class ElectricCar {
 	private Double price;
 	
 	@Column(name = "STS")
-	private String sts;
+	private String sts="A";
 	 
 	@Column(name = "IMG_ADDR")
 	private String imgAddr;
@@ -45,7 +45,7 @@ public class ElectricCar {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATE_TIME") 
-	private Date createTime;
+	private Date createTime=new Date();
 
 	public ElectricCar() {
 	}

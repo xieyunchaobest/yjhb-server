@@ -1,43 +1,58 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8" />  
 <head>
-	<title>My test project</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>	
-	<meta charset="utf-8"></meta>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script type="text/javascript" th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
-	<link rel="stylesheet" type="text/css" th:href="@{/app/css/bootstrap.min.css}"/>
-	<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
-	<script th:inline="javascript" th:src="@{/app/js/commonPageAndSort.js}"></script>
-	
-</head>
+<link rel="stylesheet" th:href="@{/app/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/components.css}" />
+<link rel="shortcut icon" th:href="@{/app/img/favicon.png}" />
+<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap.min.js}"></script>
+<script th:src="@{/app/js/public.js}"></script>
 
+<script type="text/javascript">
+
+
+	function switchPage(url,target){
+		 $(target).siblings().removeClass('active');
+		 $(target).addClass('active');
+		 $("#contentPage").attr("src",basePath+url); 
+	}
+
+</script>
+
+</head>
 <body>
-	<form id="orderByForm" action="/index.html">
-		<p><h3><strong>bootstrap简单表单的分页排序Doem</strong></h3></p>
-		<input type="hidden" id="orderByStr" name="orderByStr" th:value="${orderByStr}"/>
-		<table class="table table-bordered" style="padding:0;margin-bottom:2px;width:50%">
-			<thead>
-				<tr>
-					<th>
-						<span id="test" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;padding-right:"></span>
-						&nbsp;&nbsp;test
-					</th>
-					<th>
-						<span id="name" class="glyphicon glyphicon-arrow-up" style="cursor: pointer;"></span>
-						&nbsp;&nbsp;name
-					</th>
-				</tr>
-			</thead>
-			<tr>
-				<td>123456</td>
-				<td>小心火烛</td>
-			</tr>
-		</table>
-		<nav id="tslCommon-Page">
-		  <input type="hidden" name="currentPageNum" th:value="${currentPageNum}"/>
-		  <input type="hidden" name="totalPageCnt" th:value="${totalPageCnt}"/>
-		</nav>
-	</form>
+	<nav class="navbar navbar-default" th:fragment="copy">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active" onclick="switchPage('/server/queryOrder',this)" style="width:200px;text-align: center	"><a href="#" >订单管理<span class="sr-only">(current)</span></a></li>
+        <li onclick="switchPage('/server/queryStore',this)" style="width:200px;text-align: center"><a href="#" >门店管理</a></li>
+        <li onclick="switchPage('/server/queryCar',this)" style="width:200px;text-align: center"><a href="#" >车辆管理</a></li>
+        <li onclick="switchPage('/server/storeStat',this)" style="width:200px;text-align: center"><a href="#" >统计</a></li>
+        <li onclick="switchPage('/server/showConfig',this)" style="width:200px;text-align: center"><a href="#" >配置</a></li>
+      </ul> 
+    </div><!-- /.navbar-collapse -->
+    
+    <iframe width="100%" height="90%"   frameborder="false" marginwidth="0px" scrolling="no" allowtransparency="true" style="border: medium none;overflow:auto;" src="/server/queryOrder" id="contentPage" name="right"></iframe>
+		
+  </div><!-- /.container-fluid -->
+</nav>
+
+
 </body>
 </html>

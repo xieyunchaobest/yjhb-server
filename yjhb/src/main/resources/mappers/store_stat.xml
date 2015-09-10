@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xyc.proj">
+
+
+	<select id="statStore" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		select s.*,aa.CLICK_COUNT from
+		(SELECT id,click_count FROM yjhb.t_store_stat group by id ) aa,
+		t_store s where aa.id=s.id
+	</select>
+
+
+</mapper>

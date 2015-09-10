@@ -8,7 +8,7 @@
 		<meta HTTP-EQUIV="Expires" CONTENT="0" />
 		<meta HTTP-EQUIV="Pragma" CONTENT="no-cache" />
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-        <title>WebMusic Login</title>
+        <title>游捷滑板后台管理</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
         <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
@@ -35,12 +35,12 @@
                             <form  th:action="@{/login}" autocomplete="on" method="post"> 
                                 <h1>Log in</h1> 
                                 <p> 
-                                    <label for="username" class="uname"   > Your Username </label>
-                                    <input id="name" name="name" required="required" type="text" placeholder="myusername or mymail@mail.com"/>
+                                    <label for="username" class="uname"   >用户名</label>
+                                    <input id="name" name="name" required="required" type="text"  />
                                 </p>
                                 <p> 
-                                    <label for="password" class="youpasswd" > Your Password </label>
-                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
+                                    <label for="password" class="youpasswd" >密码</label>
+                                    <input id="password" name="password" required="required" type="password" /> 
                                 </p>
                                 <p class="keeplogin"> 
 									<label style="color:red;font-weight:bold;font-size:14px;" th:text="${error}"></label>

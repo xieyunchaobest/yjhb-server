@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	 <script type="text/javascript">
+	 $().ready(function() {
+		 formValidate();
+	 }); 
+	 
+	 function formValidate(){
+		 $("#fmAddUser").validate({
+		     	focusInvalid:false	, 
+		     	rules : {
+		     		"storeName":{
+		     			required:true 
+		     		} ,
+		     		"address":{
+		     			required:true
+		     		},
+		     		"longitude":{
+		     			required:true
+		     		},
+		     		"latitude":{
+		     			required:true
+		     		} 
+		     	},
+		         messages: {
+		             
+		         }
+		     });
+	 }
+    </script> 
+</head>
+
+<form id="fmAddUser" th:action="@{/server/updateStore}">
+	<div style="display:none">
+		<input type="hidden" id="storeId" name="storeId"  th:value="${store.id}"  />
+	</div>
+
+	 <div id="userAdd">
+	 	<table class="table table-bordered table-striped" >
+	 		<tr>
+	 			<td align="right" width="200px">门店名称：</td>
+	 			<td><input type="text" id="storeName" name="storeName" maxlength="40" th:value="${store.storeName}"/> </td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">详细位置：</td>
+	 			<td><input type="text" id="address" name="address"  maxlength="45" th:value="${store.address}" size="50"/> </td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">经度：</td>
+	 			<td><input type="text" id="longitude" name="longitude" th:value="${store.longitude}"/> </td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">纬度：</td>
+	 			<td><input type="text" id="latitude" name="latitude" th:value="${store.latitude}"/> </td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">乘车路线：</td>
+	 			<td><input type="text" id="busRoute" name="busRoute" maxlength="100" th:value="${store.busRoute}" size="50"/> </td>
+	 		</tr> 
+	 		<tr>
+	 			<td align="right">是否开业：</td>
+	 			<td>
+	 				<select  name="isOpen" style="width:100px">
+							<option value="Y" th:selected="${store.isOpen =='Y'}">是</option>
+							<option value="N" th:selected="${store.isOpen =='N'}">否</option>
+					</select>
+	 			</td>
+	 		</tr>
+	 	</table>
+	 </div>
+</form>
+</html>

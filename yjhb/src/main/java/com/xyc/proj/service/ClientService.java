@@ -2,6 +2,7 @@ package com.xyc.proj.service;
 
 import java.util.List;
 
+import com.xyc.proj.entity.ElectricCar;
 import com.xyc.proj.entity.Order;
 import com.xyc.proj.entity.User;
 import com.xyc.proj.entity.Version;
@@ -27,4 +28,5 @@ public interface ClientService {
 	 void createOrder(Order o);
 	 
 	 void updateOrder(Order o);
+	 
 }

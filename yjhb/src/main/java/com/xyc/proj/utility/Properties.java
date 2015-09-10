@@ -12,6 +12,9 @@ public class Properties {
 	private String smstemplateId;
 	
 	
+	private String fileuploadpath;
+	private String serveraddress;
+	
 	public String getSmsurl() {
 		return smsurl;
 	}
@@ -47,6 +50,18 @@ public class Properties {
 	}
 	public void setSmstemplateId(String smstemplateId) {
 		this.smstemplateId = smstemplateId;
+	}
+	public String getFileuploadpath() {
+		return fileuploadpath;
+	}
+	public void setFileuploadpath(String fileuploadpath) {
+		this.fileuploadpath = fileuploadpath;
+	}
+	public String getServeraddress() {
+		return serveraddress;
+	}
+	public void setServeraddress(String serveraddress) {
+		this.serveraddress = serveraddress;
 	}
 	
 	

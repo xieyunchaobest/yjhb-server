@@ -26,10 +26,10 @@ public class Order {
 	private long id;
 	
 	@Column(name = "TRADE_NO")
-	private String tradeNo;
+	private String tradeNo="";
 	
 	@Column(name = "OUT_TRADE_NO")
-	private String outTradeNo;
+	private String outTradeNo="";
 	
 	@Column(name = "MOBILE_NO")
 	private String mobileNo;

@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>用户查询</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+
+<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/app/validation/jquery.validate.min.js}"></script>
+<script th:inline="javascript" th:src="@{/app/js/commonSort.js}"></script>
+<script th:inline="javascript" th:src="@{/app/js/commonPage.js}"></script>
+<script th:src="@{/app/js/public.js}"></script>
+<script type="text/javascript">
+//<![CDATA[
+	function showAddModal(optFlag,target){
+		var storeId=$(target).attr('value');
+		if (typeof(storeId) == "undefined"){
+			storeId=0;
+		}
+		$("#dvmodal-body").html("").load(basePath+"/server/updateStoreInit?optFlag="+optFlag+"&storeId="+storeId+"&rn="+Math.random(), function() {
+			$('#inputDialog').modal('show'); 
+			});
+	}
+	/*]]>*/
+	
+	
+	function deleteStore(target){
+		if(confirm('删除后用户将无法在该店租车，是否继续?')){
+			var storeId=$(target).attr('value');
+			var path = basePath+"/server/deleteStore?storeId="+storeId;  
+			$('#orderByForm').attr("action", path).submit();
+		}
+			
+		
+	}
+	 function  saveStore(){
+		 if(!$("#fmAddUser").valid()) { return; } 
+			$.ajax({
+	            type: "POST",
+	            url: basePath+'/server/updateStore',
+	            data:$('#fmAddUser').serialize(),
+	            success: function(data) {
+	            	if(data.resultCode==1){
+	            		$('#inputDialog').modal('hide');
+	            		alert('Add success!');
+	            	}else{
+	            		 alert('Add failure ！');
+	            	}
+	            }
+	        });
+		}	
+</script>
+</head>
+<body>
+	<div class="container-fluid" style="margin-top:15px">
+		<form id="orderByForm" th:action="@{/server/queryStore}" method="post">
+			<input type="hidden" id="orderByStr" name="orderByStr"   th:value="${orderBy}"/>
+		 
+		 <div id="tbdata">
+			<table class="table table-bordered table-striped" >
+				<thead>
+					<tr>
+						<th>门店名称</th>
+						<th>详细位置</th>
+						<th>经度</th>
+						<th>纬度</th>
+						<th>乘车路线</th>
+						<th>是否开业</th>
+						<th width="150px">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr  th:each="item : ${storeList}">
+						<td th:text="${item.storeName}"></td>
+						<td th:text="${item.address}"></td>
+						<td th:text="${item.longitude}"></td>
+						<td th:text="${item.latitude}"></td>
+						<td th:text="${item.busRoute}"></td>
+						<td>
+							<span th:text="${item.isOpen}=='Y'?'是':'否'"></span>
+						</td>
+						<td>&nbsp;
+							<a   href="javascript:void(0)" th:value="${item.id}" onclick="showAddModal('U',this);" >修改</a> &nbsp;
+							<a   th:value="${item.id}" href="javascript:void(0)" onclick="deleteStore(this)">删除</a> &nbsp;
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div> 
+				<div style="float: left; margin-right: 15px;">
+					<button type="button" name="btnQuery" id="btnQuery"  class="btn btn-info"
+						onclick="showAddModal('A',this)">添加</button>
+				</div> 
+			</div>
+		</div>
+	</form>
+	
+	<div class="modal fade" id="inputDialog" tabindex="-1" role="dialog"  aria-labelledby="inputDialogLabel" aria-hidden="true">
+		   <div class="modal-dialog">
+		      <div class="modal-content" style="width:800px">
+		         <div class="modal-header">
+		            <button type="button" class="close" 
+		               data-dismiss="modal" aria-hidden="true">
+		                  &times;
+		            </button>
+		            <h4 class="modal-title" id="inputDialoglLabel">修改门店信息</h4> 
+		         </div>
+		         <div class="modal-body" id='dvmodal-body'></div>
+		         <div style="text-align:center;height:60px">
+		            <button type="button" id="submit"  onclick="saveStore()"  class="btn btn-danger fl btn-lg" style="border-radius:0px;width:128px;height:34px;line-height:10px;"> 确定 </button>
+		             <button type="button" data-dismiss="modal"
+								class="btn btn-lg btn-blue" style="border-radius:0px;width:128px;height:34px;margin-left:25px;line-height:10px;">取消</button>
+		         
+		         </div>
+		      </div>
+			</div>
+		</div>
+	
+	
+	
+	</div>
+
+
+</body>
+</html>

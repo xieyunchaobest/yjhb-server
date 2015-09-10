@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.xyc.proj.global.Constants;
@@ -46,6 +47,7 @@ public class MyBatisUtil {
 	}
 	
 	public SqlSession getSession() throws Exception{		
-		return sqlSessionFactory.openSession(); 
+		//return sqlSessionFactory.openSession(); 
+		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 }

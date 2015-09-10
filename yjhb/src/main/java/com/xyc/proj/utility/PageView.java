@@ -10,7 +10,7 @@ public class PageView {
 	private int currentMaxCnt = 0; 
 	private int currentPageNum = 0;
 	private List<?> resultList = null;
-	private long start = 1;
+	private long start = 0;
 	
 	public int getCurrentMaxCnt() {
 		currentMaxCnt = pageShowCnt * currentPageNum;
@@ -66,7 +66,7 @@ public class PageView {
 		if(currentPageNum == 0){
 			currentPageNum = 1;
 		}		
-		start = (currentPageNum - 1) * pageShowCnt+1;
+		start = (currentPageNum - 1) * pageShowCnt;
 		
 		return start;
 	}

@@ -1,0 +1,72 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+	 <script type="text/javascript">
+	 $().ready(function() {
+		 formValidate();
+	 }); 
+	 
+	 function formValidate(){
+		 $("#fmAddUser").validate({
+		     	focusInvalid:false	, 
+		     	rules : {
+		     		"model":{
+		     			required:true 
+		     		} ,
+		     		"price":{
+		     			required:true,
+		     			number:true  
+		     		},
+		     		"kmCount":{
+		     			required:true,
+		     			number:true
+		     		},
+		     		"afile":{
+		     			required:true
+		     		} 
+		     	},
+		         messages: {
+		             
+		         }
+		     });
+	 }
+    </script> 
+</head>
+
+<form id="fmAddUser" th:action="@{/server/updateCar}"  method="post" enctype="multipart/form-data"  >
+	<div style="display:none">
+		<input type="hidden" id="carId" name="carId"  th:value="${car.id}"  />
+	</div>
+
+	 <div id="userAdd">
+	 	<table class="table table-bordered table-striped" >
+	 		<tr>
+	 			<td align="right" width="200px">型号：</td>
+	 			<td><input type="text" id="model" name="model" maxlength="40" th:value="${car.model}"/> </td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">交易方式：</td>
+	 			<td>
+	 				<select  name="tradeType" style="width:100px">
+							<option value="R" th:selected="${car.tradeType =='R'}">租赁</option>
+							<option value="B" th:selected="${car.tradeType =='B'}">购买</option>
+					</select>
+	 			</td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">价格：</td>
+	 			<td><input type="text" id="price" name="price" th:value="${car.price}"/> </td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">续航：</td>
+	 			<td><input type="text" id="kmCount" name="kmCount" th:value="${car.kmCount}"/> </td>
+	 		</tr>
+	 		<tr>
+	 			<td align="right">图片：</td>
+	 			<td><input type="file" id="afile" name="afile"/></td>
+	 		</tr>  
+	 	</table>
+	 </div>
+</form>
+</html>

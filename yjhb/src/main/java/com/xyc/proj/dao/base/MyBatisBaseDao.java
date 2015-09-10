@@ -107,6 +107,14 @@ public class MyBatisBaseDao<T>{
     	session.select(queryName, entity, mh);
     	return mh.getMappedResults();
     }
+    
+    
+    public List<Map<String, Object>> getMapList2(Map entity,String queryName){
+    	MapResultHandler mh = new MapResultHandler();
+    	session.select(queryName, entity, mh);
+    	return mh.getMappedResults();
+    }
+
 
     public Long getCount(Map<String, Object> pm){
     	MapResultHandler mh = new MapResultHandler();
