@@ -58,6 +58,16 @@ public class DateUtil {
 		return str;
 	}
 	
-	
+	/**
+	 * 日期（精确到日）转字符串
+	 * 
+	 * @param date
+	 * @return
+	 */
+	public static String Time2Str(Date date) {
+		if(date==null)return "";
+		String str = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		return str;
+	}
 
 }

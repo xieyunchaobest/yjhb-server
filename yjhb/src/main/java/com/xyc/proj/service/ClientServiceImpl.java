@@ -16,6 +16,7 @@ import com.xyc.proj.entity.StoreStat;
 import com.xyc.proj.entity.User;
 import com.xyc.proj.entity.Version;
 import com.xyc.proj.repository.CarRepository;
+import com.xyc.proj.repository.ConfigRepository;
 import com.xyc.proj.repository.OrderRepository;
 import com.xyc.proj.repository.StoreRepository;
 import com.xyc.proj.repository.StoreStatRepository;
@@ -40,6 +41,10 @@ public class ClientServiceImpl implements ClientService {
     
     @Autowired
     VersionRepository versionRepository;
+    
+	
+	@Autowired
+    ConfigRepository configRepository;
     
     
 	@Override
@@ -80,6 +85,7 @@ public class ClientServiceImpl implements ClientService {
 				m.put("item_date", o.getPayTime());
 				m.put("item_mdmc", store.getStoreName());
 				m.put("item_fee", o.getTotalFee());
+				m.put("item_id", o.getId());
 				resList.add(m);
 			}
 		}
@@ -116,6 +122,13 @@ public class ClientServiceImpl implements ClientService {
 		orderRepository.save(o);
 	}
 	
-	
+	 public List getConfigList() {
+		 return configRepository.findAll();
+	 }
+	 
+	 
+	public Order getOrderInfo(Long id) {
+		 return orderRepository.findOne(id);
+	 }
 	
 }

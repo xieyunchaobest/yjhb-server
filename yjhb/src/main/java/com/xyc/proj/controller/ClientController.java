@@ -6,6 +6,7 @@ package com.xyc.proj.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,12 +16,14 @@ import java.util.Map;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloopen.rest.sdk.CCPRestSDK;
@@ -109,10 +112,13 @@ public class ClientController {
 		List storeList=null;
 		Map resMap=new HashMap();
 		List carList=null;
+		List configList=null;
 		try {
 			storeList=clientService.findStoreBySts();
+			configList=clientService.getConfigList();
 			//carList=clientService.findCarBySts("A");
 			resMap.put("storeList", storeList);
+			resMap.put("configList", configList);
 			//resMap.put("carList", carList);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -232,10 +238,10 @@ public class ClientController {
 	
  
 	
-	@RequestMapping("/client/alipayNotify")
-	@ResponseBody 
-	public String alipayNotify( 
-	        Model model,HttpSession Session,HttpServletRequest request) {
+	@RequestMapping(value="/client/alipayNotify", method = RequestMethod.POST)
+	public void alipayNotify( 
+	        Model model,HttpSession Session,HttpServletRequest request,
+	        HttpServletResponse response) {
 		//获取支付宝POST过来反馈信息
 		Map<String,String> params = new HashMap<String,String>();
 		Map requestParams = request.getParameterMap();
@@ -250,7 +256,12 @@ public class ClientController {
 			}
 			
 			//乱码解决，这段代码在出现乱码时使用。如果mysign和sign不相等也可以使用这段代码转化
-			//valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
+			try {
+				valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace(); 
+			}
 			params.put(name, valueStr);
 		}
 		//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以下仅供参考)//
@@ -274,29 +285,39 @@ public class ClientController {
 		System.out.println("trade_status:"+trade_status);
 
 		//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
-
-		if(AlipayNotify.verify(params)){//验证成功
-			//////////////////////////////////////////////////////////////////////////////////////////
-			//请在这里加上商户的业务逻辑程序代码
-			Order o=new Order();
-			o.setOutTradeNo(out_trade_no);
-			o.setTradeNo(trade_no);
-			clientService.updateOrder(o);
-			System.out.println("verify:success");
-
-			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
-			
-			//判断是否在商户网站中已经做过了这次通知返回的处理
-				//如果没有做过处理，那么执行商户的业务程序
-				//如果有做过处理，那么不执行商户的业务程序
-			 return "success"; //请不要修改或删除
-			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
-			//////////////////////////////////////////////////////////////////////////////////////////
-		}else{//验证失败
-			System.out.println("verify:failer");
-			 return "fail"; 
-			//out.println("fail");
+		PrintWriter out=null;
+		 try {
+			out = response.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		Order o=new Order();
+		o.setOutTradeNo(out_trade_no);
+		o.setTradeNo(trade_no);
+		clientService.updateOrder(o);
+		out.print("success");
+//		if(AlipayNotify.verify(params)){//验证成功
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//			//请在这里加上商户的业务逻辑程序代码
+//			Order o=new Order();
+//			o.setOutTradeNo(out_trade_no);
+//			o.setTradeNo(trade_no);
+//			clientService.updateOrder(o);
+//			System.out.println("verify:success");
+//
+//			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
+//			
+//			//判断是否在商户网站中已经做过了这次通知返回的处理
+//				//如果没有做过处理，那么执行商户的业务程序
+//				//如果有做过处理，那么不执行商户的业务程序
+//			 return "success"; //请不要修改或删除
+//			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+//			//////////////////////////////////////////////////////////////////////////////////////////
+//		}else{//验证失败
+//			System.out.println("verify:failer");
+//			 return "fail"; 
+//			//out.println("fail");
+//		}
 		
 	}
 	
@@ -312,23 +333,65 @@ public class ClientController {
 			String tradeType=json.getString("tradeType");
 			String outTradeNo=json.getString("out_trade_no");
 			String mobileNo=json.getString("mobileNo");
-			Long carId=json.getLong("carId");
-			Long storeId=json.getLong("storeId");
+			Integer carId=json.getInteger("carId");
+			Integer storeId=json.getInteger("storeId");
 			Double totalFee=json.getDouble("totalFee");
-			o.setOutTradeNo(outTradeNo);;
-			o.setMobileNo(mobileNo);;
-			o.setCarId(carId);
-			o.setStoreId(storeId);
-			o.setTotalFee(totalFee);
-			o.setTradeType(tradeType);
-			o.setState("A");
-			clientService.createOrder(o);
+			String carModel=json.getString("carModel");
+			String getStoreName=json.getString("getStoreName");
+			String rentTime=json.getString("rentTime");
+			String returnStoreName=json.getString("returnStoreName");
+			String returnTime=json.getString("returnTime");
+			Double sxf=json.getDouble("sxf");
+			Double sinfee=json.getDouble("sinfee");
+			Integer useTime=json.getInteger("useTime");
+			Double ydhcf=json.getDouble("ydhcf");
+			if(StringUtil.isBlank(outTradeNo)) {
+				o.setOutTradeNo(outTradeNo);;
+				o.setMobileNo(mobileNo);;
+				o.setCarId(carId);
+				o.setStoreId(storeId);
+				o.setTotalFee(totalFee);
+				o.setTradeType(tradeType);
+				o.setState("A");
+				o.setCarModel(carModel);
+				o.setGetStoreName(getStoreName);
+				o.setRentTime(rentTime);
+				o.setReturnStoreName(returnStoreName);
+				o.setReturnTime(returnTime);
+				o.setSxf(sxf);
+				o.setSinFee(sinfee);
+				o.setUseTime(useTime);
+				o.setYdhcf(ydhcf);
+				
+				clientService.createOrder(o);
+			}else {
+				
+			}
+			
+			
 		}catch(Exception e) {
 			res.resultCode=0;
 			res.result="创建订单失败";
 			e.printStackTrace();
 		}
 	
+		return res;
+	}
+	
+	@RequestMapping("/client/getOrderInfo")
+	@ResponseBody 
+	public Result getOrderInfo( 
+	        Model model,HttpSession Session,HttpServletRequest request) {
+		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
+		String orderId=json.getString("orderId");
+		Result res=new Result();
+		try {
+			Order o=clientService.getOrderInfo(Long.parseLong(orderId));
+			res.result=o;
+		}catch(Exception e) {
+			res.resultCode=0;
+		}
+		
 		return res;
 	}
 	

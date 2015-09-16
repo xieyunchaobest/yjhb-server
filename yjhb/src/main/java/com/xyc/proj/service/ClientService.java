@@ -29,4 +29,7 @@ public interface ClientService {
 	 
 	 void updateOrder(Order o);
 	 
+	 List getConfigList();
+	 
+	 Order getOrderInfo(Long id);
 }

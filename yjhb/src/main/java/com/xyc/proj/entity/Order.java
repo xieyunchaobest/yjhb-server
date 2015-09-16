@@ -48,10 +48,10 @@ public class Order {
 	private String tradeType;
 	
 	@Column(name = "CAR_ID")
-	private Long carId;
+	private Integer carId;
 	
 	@Column(name = "STORE_ID")
-	private Long storeId;
+	private Integer storeId;
 	
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -61,6 +61,35 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "PAY_TIME") 
 	private Date payTime;
+	
+	
+	@Column(name = "CAR_MODEL")
+	private String carModel;
+	
+	
+	@Column(name = "GET_STORE_NAME")
+	private String getStoreName;
+	
+	@Column(name = "RENT_TIME")
+	private String rentTime;
+	
+	@Column(name = "RETURN_STORE_NAME")
+	private String returnStoreName;
+	
+	@Column(name = "RETURN_TIME")
+	private String returnTime;
+	
+	@Column(name = "SXF")
+	private Double sxf;
+	
+	@Column(name = "SIN_FEE")
+	private Double sinFee;
+	
+	@Column(name = "YDHCF")
+	private Double ydhcf;
+	
+	@Column(name = "USE_TIME")
+	private Integer useTime;
 	
 
 	public Order() {
@@ -141,7 +170,7 @@ public class Order {
 
 
 	public String getPayTime() {
-		return DateUtil.date2Str(payTime);
+		return DateUtil.Time2Str(payTime);
 	}
 
 
@@ -170,23 +199,118 @@ public class Order {
 	}
 
 
-	public Long getCarId() {
+	public Integer getCarId() {
 		return carId;
 	}
 
 
-	public void setCarId(Long carId) {
+	public void setCarId(Integer carId) {
 		this.carId = carId;
 	}
 
 
-	public Long getStoreId() {
+	public Integer getStoreId() {
 		return storeId;
 	}
 
 
-	public void setStoreId(Long storeId) {
+	public void setStoreId(Integer storeId) {
 		this.storeId = storeId;
+	}
+
+
+	 
+
+	public String getCarModel() {
+		return carModel;
+	}
+
+
+	public void setCarModel(String carModel) {
+		this.carModel = carModel;
+	}
+
+
+	public String getGetStoreName() {
+		return getStoreName;
+	}
+
+
+	public void setGetStoreName(String getStoreName) {
+		this.getStoreName = getStoreName;
+	}
+
+
+	public String getRentTime() {
+		return rentTime;
+	}
+
+
+	public void setRentTime(String rentTime) {
+		this.rentTime = rentTime;
+	}
+
+
+	public String getReturnStoreName() {
+		return returnStoreName;
+	}
+
+
+	public void setReturnStoreName(String returnStoreName) {
+		this.returnStoreName = returnStoreName;
+	}
+
+
+	public String getReturnTime() {
+		return returnTime;
+	}
+
+
+	public void setReturnTime(String returnTime) {
+		this.returnTime = returnTime;
+	}
+
+
+	public Double getSxf() {
+		return sxf;
+	}
+
+
+	public void setSxf(Double sxf) {
+		this.sxf = sxf;
+	}
+
+
+ 
+
+
+	public Double getSinFee() {
+		return sinFee;
+	}
+
+
+	public void setSinFee(Double sinFee) {
+		this.sinFee = sinFee;
+	}
+
+
+	public Integer getUseTime() {
+		return useTime;
+	}
+
+
+	public void setUseTime(Integer useTime) {
+		this.useTime = useTime;
+	}
+
+
+	public Double getYdhcf() {
+		return ydhcf;
+	}
+
+
+	public void setYdhcf(Double ydhcf) {
+		this.ydhcf = ydhcf;
 	}
 
  

@@ -23,6 +23,11 @@ public class Config {
 	
 	@Column(name = "CONFIG_VALUE")
 	private String configValue; 
+	
+	
+	@Column(name = "CONFIG_CODE")
+	private String configCode; 
+
 
 	public Config() {
 	}
@@ -55,6 +60,16 @@ public class Config {
 
 	public void setConfigValue(String configValue) {
 		this.configValue = configValue;
+	}
+
+
+	public String getConfigCode() {
+		return configCode;
+	}
+
+
+	public void setConfigCode(String configCode) {
+		this.configCode = configCode;
 	}
 
 
