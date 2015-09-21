@@ -1,37 +1,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>My test project</title>
-	<link rel="stylesheet" th:href="@{/app/css/main.css}" />
-	<link rel="stylesheet" th:href="@{/app/css/zTreeStyle.css}" />
-	<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
-	<script th:src="@{/app/js/vendor/jquery.ztree.core-3.5.min.js}"></script>
-<script type="text/javascript">
-var setting = {	};
+<title>固定在页面底部</title>
+<FCK:meta http-equiv="content-type" content="text/html;charset=gb2312" />
+<style type="text/css">
+html, body, div {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	background: transparent;
+}
 
+body {
+	background: #f2f2f2;
+	font: 12px 宋体, Verdana, Tahoma, Lucida Grande, Arial, sans-serif;
+	color: #000;
+}
 
-$(document).ready(function(){
-	var val = $("#mmm").val();
-	var zNodes=eval('('+val+')');  
-	$.fn.zTree.init($("#funcmenu"), setting, zNodes);
-});
- 
+#ftt {
+	position: fixed;
+	bottom: 0;
+	background: #000;
+	width: 100%;
+	height: 100px;
+	line-height: 23px;
+	z-index: 9999;
+	opacity: .60;
+	filter: alpha(opacity = 60);
+	_bottom: auto;
+	_width: 100%;
+	_position: absolute;
+	_top: expression(eval(document.documentElement.scrollTop +
+		document.documentElement.clientHeight-this.offsetHeight- ( parseInt(this.currentStyle.marginTop
+		, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
+	filter:alpha(opacity=30);
+	-moz-opacity:0.3;
+	-khtml-opacity: 0.3;
+	opacity: 0.3;
+}
 
-	
-</script>
-
-
+#ftt a {
+	color: #fff;
+	font-size: 13px;
+	letter-spacing: 2px;
+}
+</style>
 </head>
-
 <body>
-	<form action="/saveInfo">
-		
-		<input type="hidden" id="mmm" th:value="${funcMenuList}" />
-	</form>
-	<div align="center" id="funcTree">
-		<div class="menu fleft"
-			style="height: 607px; overflow-y: scroll; overflow-x: hidden">
-			<ul id="funcmenu" class="ztree"></ul>
+	<div style="height: 2000px;">页面</div>
+	<div id="ftt">
+		<div>
+			<a target="_blank">底部固定</a>
 		</div>
 	</div>
 </body>

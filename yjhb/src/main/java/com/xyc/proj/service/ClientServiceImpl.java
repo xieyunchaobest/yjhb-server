@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.xyc.proj.entity.ElectricCar;
 import com.xyc.proj.entity.Order;
+import com.xyc.proj.entity.Question;
 import com.xyc.proj.entity.Store;
 import com.xyc.proj.entity.StoreStat;
 import com.xyc.proj.entity.User;
@@ -18,6 +19,7 @@ import com.xyc.proj.entity.Version;
 import com.xyc.proj.repository.CarRepository;
 import com.xyc.proj.repository.ConfigRepository;
 import com.xyc.proj.repository.OrderRepository;
+import com.xyc.proj.repository.QuestionRepository;
 import com.xyc.proj.repository.StoreRepository;
 import com.xyc.proj.repository.StoreStatRepository;
 import com.xyc.proj.repository.UserRepository;
@@ -46,6 +48,8 @@ public class ClientServiceImpl implements ClientService {
 	@Autowired
     ConfigRepository configRepository;
     
+	@Autowired
+    QuestionRepository questionRepository;
     
 	@Override
 	public void saveUser(User u) {
@@ -86,6 +90,7 @@ public class ClientServiceImpl implements ClientService {
 				m.put("item_mdmc", store.getStoreName());
 				m.put("item_fee", o.getTotalFee());
 				m.put("item_id", o.getId());
+				m.put("trade_type", o.getTradeType());
 				resList.add(m);
 			}
 		}
@@ -129,6 +134,21 @@ public class ClientServiceImpl implements ClientService {
 	 
 	public Order getOrderInfo(Long id) {
 		 return orderRepository.findOne(id);
+	 }
+	
+	
+	public Order findOrderByOutTradeNo(String outTradeNo) {
+		 Order o=orderRepository.findByOutTradeNo(outTradeNo);
+		 return o;
+	 }
+	
+	 public Question getQuestion() {
+		 return (Question)questionRepository.findAll().get(0);
+	 }
+	 
+	 
+	public void updateQuesion(Question question) {
+		 questionRepository.save(question);
 	 }
 	
 }

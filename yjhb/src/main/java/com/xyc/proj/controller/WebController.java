@@ -5,14 +5,18 @@ package com.xyc.proj.controller;
 
 import java.io.File;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,11 +28,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.xyc.proj.entity.Config;
 import com.xyc.proj.entity.ElectricCar;
+import com.xyc.proj.entity.Question;
 import com.xyc.proj.entity.Store;
 import com.xyc.proj.entity.WebUser;
 import com.xyc.proj.global.Constants;
 import com.xyc.proj.service.ClientService;
 import com.xyc.proj.service.ServerService;
+import com.xyc.proj.utility.CharacterEncodingFilter;
 import com.xyc.proj.utility.DateUtil;
 import com.xyc.proj.utility.PageView;
 import com.xyc.proj.utility.Properties;
@@ -261,5 +267,50 @@ public class WebController {
 		return "redirect:/server/showConfig";
 	}
 	
+	
+	@RequestMapping(value ="/server/desc",method = {RequestMethod.GET, RequestMethod.POST})
+	public String desc( Model model, 
+			HttpServletRequest request) {
+		return "descript";
+	}
+	
+	
+	
+	@RequestMapping(value ="/test",method = {RequestMethod.GET, RequestMethod.POST})
+	public String test( Model model, 
+			HttpServletRequest request) {
+		return "test";
+	}
+	
+	@RequestMapping(value ="/server/question",method = {RequestMethod.GET, RequestMethod.POST})
+	public String showQuestion( Model model, 
+			HttpServletRequest request) {
+		Result result=new Result();
+		Question question=clientService.getQuestion();
+		model.addAttribute("questions", question);
+		result.result=question;
+		return "question";
+	}
+	
+	@RequestMapping(value ="/server/updateQuestion",method = {RequestMethod.GET, RequestMethod.POST})
+	public String updateQuestion( Model model, 
+			HttpServletRequest request) {
+		String qid=request.getParameter("qid");
+		String contentsString=request.getParameter("contents");
+		Question q=new Question();
+		q.setId(Long.parseLong(qid));
+		q.setContents(contentsString);
+		clientService.updateQuesion(q);
+		return "redirect:/server/question";
+	}
+	
+	
+	@Bean
+    public FilterRegistrationBean encodingFilter() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new CharacterEncodingFilter());
+        registration.setDispatcherTypes(EnumSet.allOf(DispatcherType.class));
+        return registration;
+    }
 
 }

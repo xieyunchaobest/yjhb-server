@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cloopen.rest.sdk.CCPRestSDK;
 import com.xyc.proj.apliay.AlipayNotify;
 import com.xyc.proj.entity.Order;
+import com.xyc.proj.entity.Question;
 import com.xyc.proj.entity.User;
 import com.xyc.proj.entity.Version;
 import com.xyc.proj.service.ClientService;
@@ -60,8 +61,7 @@ public class ClientController {
 		restAPI.setAccount(properties.getSmsaccountId(), properties.getSmsaccountToken());// 初始化主帐号名称和主帐号令牌
 		restAPI.setAppId(properties.getSmsappid());// 初始化应用ID
 		String templeId=properties.getSmstemplateId();
-		templeId="1";
-		result = restAPI.sendTemplateSMS(mobileNo, templeId,new String[]{randomCode,"1"});
+		result = restAPI.sendTemplateSMS(mobileNo, templeId,new String[]{randomCode});
 		if("000000".equals(result.get("statusCode"))) {
 			User u=new User();
 			u.setAuthCode(randomCode);
@@ -345,8 +345,9 @@ public class ClientController {
 			Double sinfee=json.getDouble("sinfee");
 			Integer useTime=json.getInteger("useTime");
 			Double ydhcf=json.getDouble("ydhcf");
-			if(StringUtil.isBlank(outTradeNo)) {
-				o.setOutTradeNo(outTradeNo);;
+			Order order=clientService.findOrderByOutTradeNo(outTradeNo);
+			if(order==null || order.getId()<=0) {
+				o.setOutTradeNo(outTradeNo);
 				o.setMobileNo(mobileNo);;
 				o.setCarId(carId);
 				o.setStoreId(storeId);
@@ -394,5 +395,18 @@ public class ClientController {
 		
 		return res;
 	}
+	
+	
+	@RequestMapping(value ="/client/showQuestion",method = {RequestMethod.GET, RequestMethod.POST})
+	@ResponseBody 
+	public Result showQuestion( Model model, 
+			HttpServletRequest request) {
+		Result result=new Result();
+		Question question=clientService.getQuestion();
+		model.addAttribute("questions", question);
+		result.result=question;
+		return result;
+	}
+	
 	
 }

@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>游捷滑板</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" th:href="@{/app/css/font-awesome.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/app/css/bootstrap-datetimepicker.css}" />
+
+<script th:src="@{/app/js/vendor/jquery-1.11.1.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap.min.js}"></script>
+<script th:inline="javascript" th:src="@{/app/js/commonPage.js}"></script>
+<script th:src="@{/app/js/vendor/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/app/js/public.js}"></script>
+
+<style type="text/css">
+#ftt {
+	position: fixed;
+	bottom: 0;
+	background: #f36923;
+	width: 100%;
+	height: 60px;
+	line-height: 23px;
+	z-index: 9999;
+	opacity: .60;
+	filter: alpha(opacity = 60);
+	_bottom: auto;
+	_width: 100%;
+	_position: absolute;
+	_top: expression(eval(document.documentElement.scrollTop + 
+		 document.documentElement.clientHeight-this.offsetHeight- ( parseInt(this.currentStyle.marginTop
+		, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
+	filter: alpha(opacity = 50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+
+ #fttc {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 23px;
+	z-index: 99999;
+	_bottom: auto;
+	_width: 100%;
+	_position: absolute;
+	_top: expression(eval(document.documentElement.scrollTop + 
+		 document.documentElement.clientHeight-this.offsetHeight- ( parseInt(this.currentStyle.marginTop
+		, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
+}
+ 
+
+#ftt a {
+	color: #fff;
+	font-size: 13px;
+	letter-spacing: 2px;
+}
+</style>
+
+</head>
+<body>
+	<div class="container-fluid" >
+		<div class="row">
+			<div>
+				<div class="col-xs-1" />
+				<div class="col-xs-10">
+					<img alt="" style="width: 100%;" th:src="@{/app/img/desc1.jpg}" />
+					<div style="height: 30px" />
+					<img alt="" style="width: 100%;" th:src="@{/app/img/desc2.jpg}" />
+					<div style="height: 30px" />
+					<img alt="" style="width: 100%;" th:src="@{/app/img/desc3.jpg}" />
+					<div style="height: 30px" />
+					<img alt="" style="width: 100%;" th:src="@{/app/img/desc4.jpg}" /><br />
+				</div>
+				<div class="col-xs-1" />
+			</div>
+
+			<div id="ftt">
+			</div>
+			<div id="fttc">
+				<div  style="line-height:60px">
+					<div class="col-xs-1" />
+					<div class="col-xs-2" id="fttcon" >
+						<img alt="" style="width: 50px;margin-top:5px" th:src="@{/app/img/ic_launcher.png}" />
+					</div>
+					<div class="col-xs-1" style="word-wrap:break-word;" />
+					<div class="col-xs-7">
+						<span style="color:white;font-size:20px;font-weight:bold">
+						<a href="http://s-210283.gotocdn.com:9090/yjhb.apk">下载游捷滑板</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+</body>
+</html>
