@@ -54,7 +54,7 @@ public class ClientController {
 		HashMap<String, Object> result = null;
 		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
 		String mobileNo=StringUtil.getStringInJson(json,"mobileNo");
-		mobileNo="18611298927";
+		//mobileNo="18611298927";
 		String randomCode=String.valueOf((int)(Math.random()*9000+1000));
 		CCPRestSDK restAPI = new CCPRestSDK();
 		restAPI.init(properties.getSmsurl(), properties.getSmsport());// 初始化服务器地址和端口，格式如下，服务器地址不需要写https://
@@ -89,7 +89,7 @@ public class ClientController {
 		com.alibaba.fastjson.JSONObject json=Tools.getJSON(request);
 		String mobileNo=StringUtil.getStringInJson(json,"mobileNo");
 		String authCode=StringUtil.getStringInJson(json,"authCode");
-		mobileNo="18611298927";
+		//mobileNo="18611298927";
 		Result res=new Result();
 		List ulist=clientService.getUserListByMobileNoAndAuthCode(mobileNo,authCode);
 		if(ulist!=null && ulist.size()>0) {
@@ -345,6 +345,7 @@ public class ClientController {
 			Double sinfee=json.getDouble("sinfee");
 			Integer useTime=json.getInteger("useTime");
 			Double ydhcf=json.getDouble("ydhcf");
+			String  address=json.getString("address");
 			Order order=clientService.findOrderByOutTradeNo(outTradeNo);
 			if(order==null || order.getId()<=0) {
 				o.setOutTradeNo(outTradeNo);
@@ -363,7 +364,7 @@ public class ClientController {
 				o.setSinFee(sinfee);
 				o.setUseTime(useTime);
 				o.setYdhcf(ydhcf);
-				
+				o.setAddress(address);
 				clientService.createOrder(o);
 			}else {
 				

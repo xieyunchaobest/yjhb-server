@@ -91,6 +91,9 @@ public class Order {
 	@Column(name = "USE_TIME")
 	private Integer useTime;
 	
+	@Column(name = "ADDRESS")
+	private String address;
+	
 
 	public Order() {
 	}
@@ -311,6 +314,16 @@ public class Order {
 
 	public void setYdhcf(Double ydhcf) {
 		this.ydhcf = ydhcf;
+	}
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
  

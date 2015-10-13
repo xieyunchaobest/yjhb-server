@@ -61,6 +61,7 @@
 						<th>门店</th>
 						<th>费用</th>
 						<th>交易时间</th>
+						<th>地址</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -75,6 +76,9 @@
 						<td th:text="${item.TOTAL_FEE}"></td>
 						<td>
 							<span th:text="${item.PAY_TIME != null} ? ${item.PAY_TIME}"></span>
+						</td>
+						<td>
+							<span th:text="${item.ADDRESS != null} ? ${item.ADDRESS}"></span>
 						</td>
 					</tr>
 				</tbody>
