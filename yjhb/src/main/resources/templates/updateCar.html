@@ -5,6 +5,7 @@
 	 <script type="text/javascript">
 	 $().ready(function() {
 		 formValidate();
+		 changeView();
 	 }); 
 	 
 	 function formValidate(){
@@ -13,17 +14,16 @@
 		     	rules : {
 		     		"model":{
 		     			required:true 
-		     		} ,
-		     		"price":{
-		     			required:true,
-		     			number:true  
-		     		},
+		     		} , 
+		     		"tradeType":{
+		     			required:true 
+		     		} , 
 		     		"kmCount":{
 		     			required:true,
 		     			number:true
 		     		},
 		     		"afile":{
-		     			required:true
+		     			required:$("#carId").val()=='0'
 		     		} 
 		     	},
 		         messages: {
@@ -31,6 +31,24 @@
 		         }
 		     });
 	 }
+	 
+	 
+	 function changeView(){
+		 var tradeType=$("#tradeType").val();
+		 if(tradeType=='B'){
+			 $("#carPrice").show();
+			 $("#dayPrice").hide();
+			 $("#topPrice").hide();
+			 $("#nightPrice").hide();
+		 }else{
+			 $("#carPrice").hide();
+			 $("#dayPrice").show();
+			 $("#topPrice").show();
+			 $("#nightPrice").show();
+		 }
+	 }
+	 
+	 
     </script> 
 </head>
 
@@ -48,15 +66,28 @@
 	 		<tr>
 	 			<td align="right">交易方式：</td>
 	 			<td>
-	 				<select  name="tradeType" style="width:100px">
+	 				<select  name="tradeType" id="tradeType" style="width:100px" onchange="changeView()">
+	 						<option value=""  >请选择</option>
 							<option value="R" th:selected="${car.tradeType =='R'}">租赁</option>
 							<option value="B" th:selected="${car.tradeType =='B'}">购买</option>
 					</select>
 	 			</td>
 	 		</tr>
-	 		<tr>
-	 			<td align="right">价格：</td>
+	 		<tr id="carPrice">
+	 			<td align="right">价格(购车)：</td>
 	 			<td><input type="text" id="price" name="price" th:value="${car.price}"/> </td>
+	 		</tr>
+	 		<tr id="dayPrice">
+	 			<td align="right">白天价格(租车)：</td>
+	 			<td><input type="text" id="priceM" name="priceM" th:value="${car.priceM}"/> </td>
+	 		</tr>
+	 		<tr id="topPrice">
+	 			<td align="right">白天封顶价格(租车)：</td>
+	 			<td><input type="text" id="topPrice" name="topPrice" th:value="${car.topPrice}"/> </td>
+	 		</tr>
+	 		<tr id="nightPrice">
+	 			<td align="right">晚上价格(租车)：</td>
+	 			<td><input type="text" id="priceE" name="priceE" th:value="${car.priceE}"/> </td>
 	 		</tr>
 	 		<tr>
 	 			<td align="right">续航：</td>

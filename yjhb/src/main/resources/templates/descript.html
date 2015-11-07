@@ -16,8 +16,43 @@
 <script th:inline="javascript" th:src="@{/app/js/commonPage.js}"></script>
 <script th:src="@{/app/js/vendor/bootstrap-datetimepicker.min.js}"></script>
 <script th:src="@{/app/js/public.js}"></script>
+<script type="text/javascript">
+
+function is_weixin() {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+$(document).ready(function() {
+	var isWeixin = is_weixin();
+	  var $tip = $('#weixin-tip');
+	  var $close = $('#close');
+	  
+	if(isWeixin){
+		$('#weixin-tip').show();
+	}
+	
+	$close.click(function(){
+		$('#weixin-tip').hide();
+		  
+		});
+	$tip.click(function(){
+		  $tip.hide();
+		});
+});
+
+</script>
 
 <style type="text/css">
+#weixin-tip{display:none;position:fixed;left:0;top:0;background:rgba(0,0,0,0.8);filter:alpha(opacity=80);width:100%;height:100%;z-index:100;}
+#weixin-tip p{text-align:center;margin-top:10%;padding:0 5%;position:relative;}
+#weixin-tip p img{max-width: 100%; height: auto;}
+#weixin-tip .close{color:#fff;padding:5px;font:bold 20px/24px simsun;text-shadow:0 1px 0 #ddd;position:absolute;top:0;left:5%;}
+
 #ftt {
 	position: fixed;
 	bottom: 0;
@@ -66,6 +101,13 @@
 </head>
 <body>
 	<div class="container-fluid" >
+		<div id="weixin-tip">
+			<p>
+				<img  th:src="@{/app/img/live_weixin.png}" alt="微信打开" /><span
+					id="close" title="关闭" class="close">×</span>
+			</p>
+		</div>
+
 		<div class="row">
 			<div>
 				<div class="col-xs-1" />
@@ -92,7 +134,7 @@
 					<div class="col-xs-1" style="word-wrap:break-word;" />
 					<div class="col-xs-7">
 						<span style="color:white;font-size:20px;font-weight:bold">
-						<a href="http://s-210283.gotocdn.com:9090/yjhb.apk">下载游捷滑板</a>
+						<a href="http://116.255.186.54:9090/yjhb.apk">下载游捷滑板</a>
 						</span>
 					</div>
 				</div>

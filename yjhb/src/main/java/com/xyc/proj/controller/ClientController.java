@@ -342,10 +342,12 @@ public class ClientController {
 			String returnStoreName=json.getString("returnStoreName");
 			String returnTime=json.getString("returnTime");
 			Double sxf=json.getDouble("sxf");
+			Double syf=json.getDouble("syf");
 			Double sinfee=json.getDouble("sinfee");
 			Integer useTime=json.getInteger("useTime");
 			Double ydhcf=json.getDouble("ydhcf");
 			String  address=json.getString("address");
+			String  uname=json.getString("uname");
 			Order order=clientService.findOrderByOutTradeNo(outTradeNo);
 			if(order==null || order.getId()<=0) {
 				o.setOutTradeNo(outTradeNo);
@@ -365,6 +367,8 @@ public class ClientController {
 				o.setUseTime(useTime);
 				o.setYdhcf(ydhcf);
 				o.setAddress(address);
+				o.setSyf(syf);
+				o.setUname(uname);
 				clientService.createOrder(o);
 			}else {
 				

@@ -101,6 +101,9 @@ public class WebController {
 				if(!m.containsKey("TRADE_NO")) {
 					m.put("TRADE_NO", null);
 				}
+				if(!m.containsKey("ADDRESS")) {
+					m.put("ADDRESS", null);
+				}
 			}
 		}
 	    model.addAttribute("pageView", pv);
@@ -196,28 +199,43 @@ public class WebController {
 			@RequestParam(value = "model", required = false) String md,
 			@RequestParam(value = "price", required = false) String price,
 			@RequestParam(value = "kmCount", required = false) String kmCount,
-			@RequestParam(value = "carId", required = false) Long carId) {
+			@RequestParam(value = "carId", required = false) Long carId,
+			@RequestParam(value = "priceM", required = false) Double priceM,
+			@RequestParam(value = "priceE", required = false) Double priceE,
+			@RequestParam(value = "topPrice", required = false) Double topPrice) {
 		String fileName=String.valueOf(new Date().getTime());
 		Result result=new   Result();
 		String fname=file.getOriginalFilename();
 		String fileEnd="";
+		String imgpath=properties.getFileuploadpath();
 		if(!StringUtil.isBlank(fname)) {
 			fileEnd=fname.substring(fname.indexOf("."));
 		}
-		String imgpath=properties.getFileuploadpath();
-		String fillwholename=fileName+fileEnd;
 		try {
-				ElectricCar car=new ElectricCar();
+		ElectricCar car=new ElectricCar();
+		 
+			if(carId!=null && carId>0l) {
+				car=serverService.getCar(carId);
+				String imgName=car.getImgAddr();
+				
+				if(!StringUtil.isBlank(fileEnd)) {
+					File targetFile = new File(imgpath, imgName);
+					file.transferTo(targetFile);
+				}
+			}else {
+				String fillwholename=fileName+fileEnd;
 				File targetFile = new File(imgpath, fillwholename);
 				file.transferTo(targetFile);
-			if(carId!=null && carId>0l) {
-				car.setId(carId);
+				car.setImgAddr(fillwholename);
 			}
 			car.setModel(md);
 			car.setTradeType(tradeType);
 			car.setPrice(Double.parseDouble(price));
 			car.setKmCount(Integer.parseInt(kmCount));
-			car.setImgAddr(fillwholename);
+			
+			car.setPriceE(priceE);
+			car.setPriceM(priceM);
+			car.setTopPrice(topPrice);
 			serverService.saveCar(car);
 		}catch( Exception e){
 			result.resultCode=0;
@@ -245,8 +263,12 @@ public class WebController {
 			HttpServletRequest request) {
 		Config c1=serverService.getConfig(1l);
 		Config c2=serverService.getConfig(2l);
+		Config c3=serverService.getConfig(3l);
+		Config c4=serverService.getConfig(4l);
 		model.addAttribute("sxf", c1.getConfigValue());
 		model.addAttribute("ydhcf", c2.getConfigValue());
+		model.addAttribute("zwfjx", c3.getConfigValue());
+		model.addAttribute("zcsjkd", c4.getConfigValue());
 		return "configsetting";
 	}
 	
@@ -255,14 +277,26 @@ public class WebController {
 			HttpServletRequest request) {
 		String sxf=request.getParameter("sxf");
 		String ydhcf=request.getParameter("ydhcf");
+		String zwfjx=request.getParameter("zwfjx");
+		String zcsjkd=request.getParameter("zcsjkd");
+		
 		Config cc1=serverService.getConfig(1l);
 		cc1.setConfigValue(sxf);
 		
 		Config cc2=serverService.getConfig(2l);
 		cc2.setConfigValue(ydhcf);
 		
+		Config cc3=serverService.getConfig(3l);
+		cc3.setConfigValue(zwfjx);
+		
+		Config cc4=serverService.getConfig(4l);
+		cc4.setConfigValue(zcsjkd);
+		
 		serverService.saveConfig(cc1);
 		serverService.saveConfig(cc2);
+		serverService.saveConfig(cc3);
+		serverService.saveConfig(cc4);
+		
 		
 		return "redirect:/server/showConfig";
 	}

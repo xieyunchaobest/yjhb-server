@@ -55,7 +55,10 @@
 					<tr>
 						<th>型号</th>
 						<th>交易方式</th>
-						<th>价格</th>
+						<th>售价</th>
+						<th>白天价格</th>
+						<th>晚上价格</th>
+						<th>封顶价格</th>
 						<th>续航(公里)</th>
 						<th>图片</th>
 						<th width="120px">操作</th>
@@ -65,8 +68,11 @@
 					<tr  th:each="item : ${carList}">
 						<td th:text="${item.model}"></td>
 						<td th:text="${item.tradeType}=='B'?'购买':'租赁'"></td>
-						<td th:text="${item.kmCount}"></td>
 						<td th:text="${item.price}"></td>
+						<td th:text="${item.priceM}"></td>
+						<td th:text="${item.priceE}"></td>
+						<td th:text="${item.topPrice}"></td>
+						<td th:text="${item.kmCount}"></td>
 						<td><a th:href="@{'/app/uploadfiles/'+${item.imgAddr}}" target="_blank">查看</a> </td>
 						<td>
 							<a   href="javascript:void(0)" th:value="${item.id}" onclick="showAddModal('U',this);" >修改</a> &nbsp;

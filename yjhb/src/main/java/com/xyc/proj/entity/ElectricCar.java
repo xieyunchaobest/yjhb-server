@@ -33,7 +33,17 @@ public class ElectricCar {
 	private Integer kmCount;
 	
 	@Column(name = "PRICE")
-	private Double price;
+	private Double price=0d;
+	
+	@Column(name = "PRICE_M")
+	private Double priceM=0d;
+	
+	@Column(name = "PRICE_E")
+	private Double priceE=0d;
+	
+	@Column(name = "TOP_PRICE")
+	private Double topPrice=0d;
+	
 	
 	@Column(name = "STS")
 	private String sts="A";
@@ -129,6 +139,36 @@ public class ElectricCar {
 
 	public void setImgAddr(String imgAddr) {
 		this.imgAddr = imgAddr;
+	}
+
+
+	public Double getPriceM() {
+		return priceM;
+	}
+
+
+	public void setPriceM(Double priceM) {
+		this.priceM = priceM;
+	}
+
+
+	public Double getPriceE() {
+		return priceE;
+	}
+
+
+	public void setPriceE(Double priceE) {
+		this.priceE = priceE;
+	}
+
+
+	public Double getTopPrice() {
+		return topPrice;
+	}
+
+
+	public void setTopPrice(Double topPrice) {
+		this.topPrice = topPrice;
 	}
 
  

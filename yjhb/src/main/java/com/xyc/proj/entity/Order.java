@@ -82,6 +82,9 @@ public class Order {
 	@Column(name = "SXF")
 	private Double sxf;
 	
+	@Column(name = "SYF")
+	private Double syf;
+	
 	@Column(name = "SIN_FEE")
 	private Double sinFee;
 	
@@ -92,7 +95,10 @@ public class Order {
 	private Integer useTime;
 	
 	@Column(name = "ADDRESS")
-	private String address;
+	private String address="";
+	
+	@Column(name = "U_NAME")
+	private String uname;
 	
 
 	public Order() {
@@ -324,6 +330,26 @@ public class Order {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+
+	public Double getSyf() {
+		return syf;
+	}
+
+
+	public void setSyf(Double syf) {
+		this.syf = syf;
+	}
+
+
+	public String getUname() {
+		return uname;
+	}
+
+
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
 
  
