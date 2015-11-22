@@ -14,8 +14,7 @@ package com.xyc.proj.apliay;
  */
 public class AlipayServiceEnvConstants {
 
-    /**支付宝公钥-从支付宝服务窗获取*/
-
+  
     /**签名编码-视支付宝服务窗要求*/
     public static final String SIGN_CHARSET      = "GBK";
 
